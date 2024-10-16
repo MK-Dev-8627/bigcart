@@ -1,5 +1,6 @@
 import 'package:big_cart/configs/color/color.dart';
 import 'package:big_cart/configs/components/custom_textfiled.dart';
+import 'package:big_cart/view_model/signup/signup_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:big_cart/view_model/login/login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ class InputPasswordWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(builder: (context, provider, child) {
+    return Consumer<SignupViewModel>(builder: (context, provider, child) {
       return ValueListenableBuilder(
           valueListenable: _obSecurePassword,
           builder: (context, value, child) {
@@ -34,28 +35,6 @@ class InputPasswordWidget extends StatelessWidget {
                 provider.setPassword(value!);
               },
             );
-
-            /*TextFormField(
-                  obscureText: _obSecurePassword.value,
-                  focusNode: focusNode,
-                  obscuringCharacter: "*",
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    labelText: 'Password',
-                    prefixIcon: const Icon(Icons.lock_open_rounded),
-                    suffixIcon: InkWell(
-                        onTap: (){
-                          _obSecurePassword.value = !_obSecurePassword.value ;
-                        },
-                        child: Icon(
-                            _obSecurePassword.value ?  Icons.visibility_off_outlined :
-                            Icons.visibility
-                        )),
-                  ),
-                  onChanged: (value){
-                    provider.setPassword(value);
-                  },
-                );*/
           });
     });
   }

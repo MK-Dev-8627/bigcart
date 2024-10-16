@@ -46,7 +46,7 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
       ),
     ];
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.backgroundColor,
         body: bottomBarPages[_page],
         extendBody: true,
         bottomNavigationBar: CurvedNavigationBar(

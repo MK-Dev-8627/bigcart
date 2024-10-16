@@ -7,7 +7,7 @@ import '../../../configs/routes/routes_name.dart';
 class SplashServices {
 
   void checkAuthentication(BuildContext context)async{
-     bool  isLogin = true;
+     bool  isLogin = false;
     if(isLogin){
       Timer(const Duration(seconds: 2),
             () =>

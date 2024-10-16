@@ -1,4 +1,5 @@
 import 'package:big_cart/configs/color/color.dart';
+import 'package:big_cart/view_model/signup/signup_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:big_cart/view_model/login/login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -6,29 +7,29 @@ import 'package:provider/provider.dart';
 import '../../../configs/components/custom_textfiled.dart';
 import '../../../configs/utils.dart';
 
-class InputEmailWidget extends StatelessWidget {
+class InputPhoneWidget extends StatelessWidget {
   final FocusNode focusNode, passwordFocusNode;
-  const InputEmailWidget(
+  const InputPhoneWidget(
       {Key? key, required this.focusNode, required this.passwordFocusNode})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(builder: (context, provider, child) {
+    return Consumer<SignupViewModel>(builder: (context, provider, child) {
       return CustomTextField(
-        hintText: 'Email',
-        // labelText: 'Email',
-        controller: provider.emailController,
+        hintText: 'Phone number',
+        // labelText: 'Phone',
+        controller: provider.phoneController,
         focusNode: focusNode,
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.number,
         fillColor: AppColors.whiteColor,
         onFieldSubmitted: (value) {
           Utils.fieldFocusChange(context, focusNode, passwordFocusNode);
         },
         onChanged: (value) {
-          provider.setEmail(value!);
+          provider.setPhone(value!);
         },
-        prefixIcon: Icon(Icons.email_outlined),
+        prefixIcon: Icon(Icons.phone),
       );
 
       /*  TextFormField(

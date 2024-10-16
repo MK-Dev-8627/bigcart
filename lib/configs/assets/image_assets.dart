@@ -3,6 +3,9 @@ class ImageAssets {
   static const String splashScreen = 'assets/images/splash.png' ;
   static const String apple = 'assets/images/apple.png' ;
   static const String bigCart = 'assets/images/bigCart.png' ;
+  static const String login = 'assets/images/login.png' ;
+  static const String login1 = 'assets/images/login1.png' ;
+  static const String signup = 'assets/images/signup.png' ;
 
 
   static const String home = 'assets/icons/home.png' ;

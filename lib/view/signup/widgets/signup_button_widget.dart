@@ -1,4 +1,5 @@
 import 'package:big_cart/configs/extensions.dart';
+import 'package:big_cart/view_model/signup/signup_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:big_cart/view_model/login/login_view_model.dart';
 import 'package:provider/provider.dart';
@@ -13,19 +14,23 @@ class SignupButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(
+    return Consumer<SignupViewModel>(
         builder: (context, provider, child){
           return CustomButton(
             height: 60,
             width: context.mediaQueryWidth,
-            title: 'Login',
-            loading: provider.loginLoading ? true : false,
+            title: 'Sign up',
+            loading: provider.signupLoading ? true : false,
             onPress: (){
+              print('**************************');
+              print("email: ${provider.email} , phone: ${provider.phone} , password: ${provider.password}");
 
               if(provider.email.isEmpty){
                 Utils.flushBarErrorMessage('Please enter email', context);
               }else if(!AppValidator.emailValidator(provider.email.toString())){
                 Utils.flushBarErrorMessage('Please enter valid email', context);
+              }else if(provider.phone.isEmpty){
+                Utils.flushBarErrorMessage('Please enter phone', context);
               }else if(provider.password.isEmpty){
                 Utils.flushBarErrorMessage('Please enter password', context);
               }else if(provider.password.length < 6){
@@ -35,6 +40,7 @@ class SignupButtonWidget extends StatelessWidget {
 
                 Map data = {
                   'email' : provider.email.toString(),
+                  'phone' : provider.phone.toString(),
                   'password' : provider.password.toString(),
                 };
 
@@ -43,8 +49,10 @@ class SignupButtonWidget extends StatelessWidget {
                 //   'password' : 'cityslicka',
                 // };
 
-              provider.loginApi(data).then((value){
-                Navigator.pushNamed(context, RoutesName.home);
+              provider.signupApi(data).then((value){
+                print(data.toString());
+                // Navigator.pushNamed(context, RoutesName.login);
+                Utils.toastMessage('Successfully registered!');
               }).onError((error, stackTrace){
                 Utils.flushBarErrorMessage(error.toString(), context);
               });

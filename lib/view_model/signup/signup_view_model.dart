@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:big_cart/model/user/user_model.dart';
@@ -5,15 +7,15 @@ import 'package:big_cart/view_model/services/session_manager/session_controller.
 
 import '../../repository/auth_api/auth_repository.dart';
 
-class LoginViewModel with ChangeNotifier {
+class SignupViewModel with ChangeNotifier {
   AuthRepository authRepository;
-  LoginViewModel({required this.authRepository});
+  SignupViewModel({required this.authRepository});
 
-  bool _loginLoading = false;
-  bool get loginLoading => _loginLoading;
+  bool _signupLoading = false;
+  bool get signupLoading => _signupLoading;
 
-  setLoginLoading(bool value) {
-    _loginLoading = value;
+  setSignupLoading(bool value) {
+    _signupLoading = value;
     notifyListeners();
   }
 
@@ -52,16 +54,21 @@ class LoginViewModel with ChangeNotifier {
     _password = password;
   }
 
-  Future<UserModel> loginApi(dynamic data) async {
+  clearFormData(){
+    emailController.clear();
+    phoneController.clear();
+    passwordController.clear();
+  }
+
+  Future<dynamic> signupApi(dynamic data) async {
     try {
-      setLoginLoading(true);
-      final response = await authRepository.loginApi(data);
-      await SessionController().saveUserInPreference(response);
-      await SessionController().getUserFromPreference();
-      setLoginLoading(false);
-      return response;
+      setSignupLoading(true);
+      Timer(const Duration(seconds: 10), () {
+        clearFormData();
+        return data;});
+      setSignupLoading(false);
     } catch (e) {
-      setLoginLoading(false);
+      setSignupLoading(false);
       throw Exception(e);
     }
   }
