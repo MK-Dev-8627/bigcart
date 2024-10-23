@@ -55,11 +55,11 @@ class LoginViewModel with ChangeNotifier {
   Future<UserModel> loginApi(dynamic data) async {
     try {
       setLoginLoading(true);
-      final response = await authRepository.loginApi(data);
-      await SessionController().saveUserInPreference(response);
-      await SessionController().getUserFromPreference();
+      // final response = await authRepository.loginApi(data);
+      // await SessionController().saveUserInPreference(response);
+      // await SessionController().getUserFromPreference();
       setLoginLoading(false);
-      return response;
+      return UserModel();
     } catch (e) {
       setLoginLoading(false);
       throw Exception(e);

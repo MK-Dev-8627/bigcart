@@ -1,4 +1,5 @@
 import 'package:big_cart/model/movie_list/movie_list_model.dart';
+import 'package:big_cart/model/product/product_model.dart';
 
 import 'home_repository.dart';
 
@@ -27,5 +28,7 @@ class HomeMockApiRepository implements HomeRepository {
     };
     return response = MovieListModel.fromJson(response);
   }
+
+
 
 }

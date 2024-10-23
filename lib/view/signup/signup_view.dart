@@ -79,10 +79,11 @@ class _SignupViewState extends State<SignupView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Already have an account? ',
+                        Text('Already have an account ?',
                             style: Theme.of(context).textTheme.bodyMedium),
                         CustomTextButton(
                             title: 'Login',
+                            textColor: AppColors.blackColor,
                             onPress: () {
                               Navigator.pushNamedAndRemoveUntil(
                                   context, RoutesName.login, (route) => false);

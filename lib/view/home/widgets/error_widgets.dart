@@ -9,7 +9,7 @@ class HomeErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeViewViewModel>(
+    return Consumer<HomeViewModel>(
         builder: (context, provider, child){
           if(provider.moviesList.message.toString() == 'No Internet Connection'){
             return InterNetExceptionWidget(onPress: (){

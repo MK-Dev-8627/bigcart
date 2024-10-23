@@ -13,6 +13,7 @@ class AppColors {
   static const Color buttonShadowColor = Color(0xFF6CC51D);
   static const Color buttonColor = Colors.green;
   static const Color redColor = Colors.red;
+  static const Color greenColor = Colors.green;
 
   static const LinearGradient buttonGradient = LinearGradient(
       colors: [ primaryColor, primaryDarkColor]);

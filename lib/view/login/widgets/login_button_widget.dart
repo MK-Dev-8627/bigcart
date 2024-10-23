@@ -8,8 +8,8 @@ import '../../../configs/utils.dart';
 import '../../../configs/validator/app_validator.dart';
 
 
-class SignupButtonWidget extends StatelessWidget {
-  const SignupButtonWidget({Key? key}) : super(key: key);
+class LoginButtonWidget extends StatelessWidget {
+  const LoginButtonWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,12 @@ class SignupButtonWidget extends StatelessWidget {
                 //   'password' : 'cityslicka',
                 // };
 
-              provider.loginApi(data).then((value){
+              // provider.loginApi(data).then((value){
+              //   Navigator.pushNamed(context, RoutesName.home);
+              // }).onError((error, stackTrace){
+              //   Utils.flushBarErrorMessage(error.toString(), context);
+              // });
                 Navigator.pushNamed(context, RoutesName.home);
-              }).onError((error, stackTrace){
-                Utils.flushBarErrorMessage(error.toString(), context);
-              });
-
               }
             },
           );

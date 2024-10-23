@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => SignupViewModel(authRepository: getIt())),
         ChangeNotifierProvider(
-            create: (_) => HomeViewViewModel(homeRepository: getIt())),
+            create: (_) => HomeViewModel(homeRepository: getIt())),
       ],
       child: MaterialApp(
         title: 'Big Cart',
@@ -52,9 +52,9 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: 'poppins',
           textTheme: const TextTheme(
-            titleLarge: TextStyle(color: AppColors.textColor),
-            titleMedium: TextStyle(color: AppColors.textColor),
-            titleSmall: TextStyle(color: AppColors.textColor),
+            titleLarge: TextStyle(color: AppColors.blackColor,fontWeight: FontWeight.w600,fontSize: 18),
+            titleMedium: TextStyle(color: AppColors.textColor,fontWeight: FontWeight.w600,fontSize: 15),
+            titleSmall: TextStyle(color: AppColors.textColor,),
             bodyLarge: TextStyle(color: AppColors.textColor),
             bodyMedium: TextStyle(color: AppColors.textColor),
             bodySmall: TextStyle(color: AppColors.textColor),
