@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           primaryColor: AppColors.primaryColor,
           backgroundColor: AppColors.backgroundColor,
           canvasColor: AppColors.textColor,
+          cardColor: AppColors.whiteColor,
           iconTheme: const IconThemeData(
             color: AppColors.textColor, // Set the default icon color here
             // size: 30, // Optional: You can also change the default size of icons

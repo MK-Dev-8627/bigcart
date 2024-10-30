@@ -7,12 +7,14 @@ class ImageAssets {
   static const String login1 = 'assets/images/login1.png' ;
   static const String signup = 'assets/images/signup.png' ;
 
-
+// Icons
   static const String home = 'assets/icons/home.png' ;
   static const String account = 'assets/icons/account.png' ;
   static const String favourite = 'assets/icons/favourite.png' ;
   static const String cart = 'assets/icons/cart.png' ;
   static const String filters = 'assets/icons/filters.png' ;
+  static const String plus = 'assets/icons/plus.png' ;
+  static const String minus = 'assets/icons/minus.png' ;
 
 // Categories
   static const String vegetables = 'assets/images/vegatable.png' ;

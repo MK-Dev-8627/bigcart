@@ -40,19 +40,19 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
+        child:  Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
+            child: SingleChildScrollView(
+              child:Column(
               children: [
                 20.height,
-                InputSearchWidget(focusNode: searchFocusNode),
+               InputSearchWidget(focusNode: searchFocusNode),
                 20.height,
                 CarouselSliderWidget(),
                 20.height,
                 CategoriesWidget(),
                 20.height,
-                ProductListWidget(),
+                ProductListWidget()
 
               ],
             ),

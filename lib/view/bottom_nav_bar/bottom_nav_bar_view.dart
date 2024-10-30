@@ -52,11 +52,19 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
         bottomNavigationBar: CurvedNavigationBar(
           key: _bottomNavigationKey,
           index: 0,
-          items: const <Widget>[
-            ImageIcon(AssetImage(ImageAssets.home), size: 30),
-            ImageIcon(AssetImage(ImageAssets.account), size: 30),
-            ImageIcon(AssetImage(ImageAssets.favourite), size: 30),
-            ImageIcon(AssetImage(ImageAssets.cart), size: 30)
+          items: <Widget>[
+            ImageIcon(AssetImage(ImageAssets.home),
+                color: _page == 0 ? AppColors.whiteColor : AppColors.textColor,
+                size: 30),
+            ImageIcon(AssetImage(ImageAssets.account),
+                color: _page == 1 ? AppColors.whiteColor : AppColors.textColor,
+                size: 30),
+            ImageIcon(AssetImage(ImageAssets.favourite),
+                color: _page == 2 ? AppColors.whiteColor : AppColors.textColor,
+                size: 30),
+            ImageIcon(AssetImage(ImageAssets.cart),
+                color: _page == 3 ? AppColors.whiteColor : AppColors.textColor,
+                size: 30)
           ],
           color: AppColors.whiteColor,
           buttonBackgroundColor: AppColors.primaryDarkColor,
