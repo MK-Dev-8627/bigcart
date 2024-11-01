@@ -25,32 +25,35 @@ class CategoriesListWidget extends StatelessWidget {
               crossAxisSpacing: 10
             ),
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            // physics: const NeverScrollableScrollPhysics(),
             itemCount: Constants.categories.length,
 
             itemBuilder: (context, index) {
               final category =
               Constants.categories.elementAt(index);
-              return Container(
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                          child: Image.asset(
-                              category['image'] ?? "")),
-                      5.height,
-                      Text(
-                        category['title'] ?? "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall,
-                      )
-                    ],
+              return Hero(
+                tag: '${category['image']}',
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Expanded(
+                            child: Image.asset(
+                                category['image'] ?? "")),
+                        5.height,
+                        Text(
+                          category['title'] ?? "",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

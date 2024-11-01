@@ -12,8 +12,6 @@ class HomeViewModel with ChangeNotifier {
   HomeRepository homeRepository;
   HomeViewModel({required this.homeRepository});
 
-
-
   bool _loading = false;
   bool get loading => _loading;
 
@@ -53,25 +51,44 @@ class HomeViewModel with ChangeNotifier {
     });
   }
 
-  List<Product> productsList = [];
+  List<Product> _productsList = [];
+  List<Product> get productsList => _productsList;
 
   setProductsList(List<Product> response) {
-    productsList = response;
+    _productsList = response;
     notifyListeners();
   }
 
   setFavProduct(bool value, int index) {
-    print('productsList: ${productsList.length} isFav : ${value}, index:  $index');
+    print(
+        'productsList: ${productsList.length} isFav : ${value}, index:  $index');
     // productsList.elementAt(index).isFav = !value;
-    productsList.elementAt(index).toggleFavorite();
+    if (productsList.isNotEmpty) {
+      productsList.elementAt(index).toggleFavorite();
+      if (productsList[index].isFav == true) {
+        _favProductsList.add(productsList[index]); // Add if favorite
+        notifyListeners();
+      } else {
+        _favProductsList.remove(productsList[index]); // Remove if not favorite
+
+        notifyListeners();
+      }
+    }
+
     notifyListeners();
   }
 
   setAddToCart(bool value, int index) {
     // productsList.elementAt(index).isAdded = !value;
     productsList.elementAt(index).toggleAdded();
+    if (productsList[index].isAdded == true) {
+      _cartProductsList.add(productsList[index]); // Add if cart
+    } else {
+      _cartProductsList.remove(productsList[index]); // Remove if not cart
+    }
     notifyListeners();
   }
+
   void addProductQty(int index) {
     var product = productsList.elementAt(index);
 
@@ -90,7 +107,7 @@ class HomeViewModel with ChangeNotifier {
     // Decrease qty if it's greater than 0
     if ((product.qty ?? 0) > 1) {
       product.qty = (product.qty ?? 0) - 1;
-    } else if((product.qty ?? 0) <= 1) {
+    } else if ((product.qty ?? 0) <= 1) {
       product.isAdded = false;
     }
 
@@ -99,14 +116,12 @@ class HomeViewModel with ChangeNotifier {
 
     print('Updated qty for product at index $index: ${product.qty}');
   }
+
   Future<void> fetchProductsListApi() async {
     setLoading(true);
-    print("loading: $loading");
-    Timer(const Duration(seconds: 0), () {
-      setProductsList(Constants.productsList);
-      setLoading(false);
-      print("loading: $loading");
-    });
+    setProductsList(Constants.productsList);
+    Future.delayed(const Duration(seconds: 3))
+        .then((value) => setLoading(false));
     notifyListeners();
   }
 
@@ -116,14 +131,15 @@ class HomeViewModel with ChangeNotifier {
   Product? get selectedProduct => _selectedProduct;
 
   // Setter for selectedProduct that notifies listeners
-   setSelectedProduct(Product value) {
+  setSelectedProduct(Product value) {
     _selectedProduct = value;
     notifyListeners();
     print('setSelectedProduct');
     print(_selectedProduct!.toJson());
-     // Notify listeners about the change
+    // Notify listeners about the change
   }
-  String _productImage= '';
+
+  String _productImage = '';
   String get productImage => _productImage;
 
   setProductImage(String productImage) {
@@ -132,6 +148,54 @@ class HomeViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  List<Product> _favProductsList = [];
+  List<Product> get favProductsList => _favProductsList;
 
+  setFavProductsList(List<Product> value) {
+    _favProductsList = value;
+    print('_favProductsList:  $_favProductsList');
+    notifyListeners();
+  }
 
+  Future<void> fetchFavProductsList() async {
+    setLoading(true);
+    _favProductsList = [];
+    print("loading: $loading");
+    print("productsList: $productsList");
+    // _favProductsList = [];
+    productsList.forEach((element) {
+      print('element.isFav ${element.isFav}');
+      if (element.isFav ?? false) {
+        _favProductsList.add(element);
+      }
+    });
+    Future.delayed(const Duration(seconds: 3))
+        .then((value) => setLoading(false));
+
+    print("loading: $loading");
+    notifyListeners();
+  }
+
+  Future<void> removeFavProduct(int index) async {
+
+    if (productsList.isNotEmpty) {
+      final int productIndex =  productsList.indexWhere(
+          (element) => element.name == _favProductsList.elementAt(index).name);
+      productsList.elementAt(productIndex).toggleFavorite();
+
+      if (_favProductsList.isNotEmpty) {
+        _favProductsList.removeAt(index); // Remove if not favorite
+      }
+    }
+    notifyListeners();
+  }
+
+  List<Product> _cartProductsList = [];
+  List<Product> get cartProductsList => _cartProductsList;
+
+  setCartProductsList(List<Product> value) {
+    _cartProductsList = value;
+    print('_cartProductsList:  $_cartProductsList');
+    notifyListeners();
+  }
 }

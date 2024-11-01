@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
     this.centerTitle = true,
     this.autoImplyLeading = false,
     this.leadingWidth = 70,
-    this.appbarHeight = 70,
+    this.appbarHeight = 50,
   }) : super(key: key);
   final bool centerTitle;
   final double? leadingWidth;

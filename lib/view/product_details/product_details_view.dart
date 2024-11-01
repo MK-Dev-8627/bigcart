@@ -50,70 +50,65 @@ class ProductDetailsView extends StatelessWidget {
                       decoration:
                           const BoxDecoration(color: AppColors.whiteColor),
                       child: Hero(
-                        tag: '${product.name}',
-                        child: Image.asset(
-                          product.image ?? ImageAssets.apple,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+                          tag: '${product.name}',
+                          child: Image.asset(
+                            product.image ?? ImageAssets.apple,
+                          )),
                     ),
                     Container(
-                      height: context.mediaQueryHeight * 0.6,
-                      width: context.mediaQueryWidth,
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                          color: AppColors.backgroundColor,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20))),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '${product.price}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .copyWith(
-                                            color: AppColors.primaryDarkColor),
-                                  ),
-                                  Text(
-                                    '${product.name}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineLarge,
-                                  ),
-                                  Text(
-                                    '${product.unit}',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                ],
-                              ),
-                              FavButton(product: product, index: index),
-                            ],
-                          ),
-                          20.height,
-                          Text(
-                            '${product.description}',
-                            textAlign: TextAlign.justify,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          20.height,
-                          QuantityWidget(index: index, product: product),
-                          20.height,
-                          AddToCartButton(),
-                          20.height,
-                        ],
-                      ),
-                    )
+                        height: context.mediaQueryHeight * 0.6,
+                        width: context.mediaQueryWidth,
+                        padding: EdgeInsets.all(20),
+                        decoration: const BoxDecoration(
+                            color: AppColors.backgroundColor,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20))),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${product.price}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .copyWith(
+                                              color:
+                                                  AppColors.primaryDarkColor),
+                                    ),
+                                    Text(
+                                      '${product.name}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineLarge,
+                                    ),
+                                    Text(
+                                      '${product.unit}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    ),
+                                  ],
+                                ),
+                                FavButton(product: product, index: index)
+                              ],
+                            ),
+                            20.height,
+                            Text('${product.description}',
+                              textAlign: TextAlign.justify,
+                              style: Theme.of(context).textTheme.bodyLarge,),
+                            20.height,
+                            QuantityWidget(index: index, product: product),
+                            20.height,
+                            AddToCartButton(),
+                            20.height,
+                          ],
+                        ))
                   ],
                 ),
               ),
@@ -122,7 +117,3 @@ class ProductDetailsView extends StatelessWidget {
         ));
   }
 }
-
-
-
-

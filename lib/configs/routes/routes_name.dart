@@ -13,6 +13,9 @@ class RoutesName {
   static const String home = 'home_view' ;
   static const String productDetails = 'product_details_view' ;
   static const String categories = 'categories_view' ;
+  static const String featuresProducts = 'features_products_view' ;
+  static const String favouriteProducts = 'favourite_products_view' ;
+  static const String categoriesProducts = 'categories_products_view' ;
 
 
 }

@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Big Cart',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.green,
           primaryColor: AppColors.primaryColor,

@@ -7,6 +7,7 @@ import 'package:big_cart/configs/color/color.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../favourite_products/favourite_products.dart';
 import '../home/home_view.dart';
 
 class CurvedBottomNavBar extends StatefulWidget {
@@ -38,9 +39,7 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
       Center(
         child: Text('Account'),
       ),
-      Center(
-        child: Text('Favourite'),
-      ),
+      FavouriteProductsView(),
       Center(
         child: Text('Cart'),
       ),

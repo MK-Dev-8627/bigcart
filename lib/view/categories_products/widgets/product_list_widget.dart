@@ -9,96 +9,44 @@ import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../configs/color/color.dart';
-import '../../../configs/components/loading_widget.dart';
-import '../../../configs/constants/constants.dart';
-import '../../../data/response/status.dart';
 import '../../../model/product/product_model.dart';
 import '../../../view_model/home/home_view_model.dart';
-import 'error_widgets.dart';
 
-class ProductListWidget extends StatefulWidget {
+class ProductListWidget extends StatelessWidget {
   const ProductListWidget({super.key});
 
   @override
-  State<ProductListWidget> createState() => _ProductListWidgetState();
-}
-
-class _ProductListWidgetState extends State<ProductListWidget> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // Schedule fetchFavProductsList to run after the build phase
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider = Provider.of<HomeViewModel>(context, listen: false);
-      provider.fetchProductsListApi();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return
-      // ChangeNotifierProvider<HomeViewModel>(
-      // create: (BuildContext context) =>
-      //     HomeViewModel(homeRepository: getIt())..fetchProductsListApi(),
-      // child:
-
-      Consumer<HomeViewModel>(builder: (context, provider, _) {
-        print('HomeScreen:   ${provider.productsList}');
-        return Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Features Products',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(color: AppColors.blackColor),
-                ),
-                InkWell(
-                    onTap: () {
-                      Navigator.pushNamedAndRemoveUntil(context, RoutesName.featuresProducts, (route) => true);
-                    },
-                    child: const Icon(Icons.arrow_forward_ios))
-              ],
-            ),
-            10.height,
-            Skeletonizer(
-              enabled: provider.loading,
-              child: GridView.builder(
-                gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.6,
-                ),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: provider.productsList.length,
-                itemBuilder: (context, index) {
-                  final product = provider.productsList[index];
-                  return GestureDetector(
-                    onTap: () async {
-                      Navigator.pushNamed(
-                        context,
-                        RoutesName.productDetails,
-                        arguments: {'product': product, 'index': index},
-                      );
-                    },
-                    child: _buildProductCard(
-                        context, product, provider, index),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],
-        );
-      });
-    // );
+    return Consumer<HomeViewModel>(builder: (context, provider, _) {
+      return Skeletonizer(
+        enabled: provider.loading,
+        child: GridView.builder(
+          gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.6,
+          ),
+          shrinkWrap: true,
+          // physics: const NeverScrollableScrollPhysics(),
+          itemCount: provider.productsList.length,
+          itemBuilder: (context, index) {
+            final product = provider.productsList[index];
+            return GestureDetector(
+              onTap: () async {
+                Navigator.pushNamed(
+                  context,
+                  RoutesName.productDetails,
+                  arguments: {'product': product, 'index': index},
+                );
+              },
+              child: _buildProductCard(
+                  context, product, provider, index),
+            );
+          },
+        ),
+      );
+    });
   }
 
   Widget _buildProductCard(BuildContext context, Product product,
@@ -150,9 +98,7 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           Expanded(
               child: Hero(
                   tag: '${product.name}',
-                  child: Image.asset(product.image ?? ""),
-              ),
-          ),
+                  child: Image.asset(product.image ?? ""))),
           const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.all(10.0),

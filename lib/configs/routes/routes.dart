@@ -8,6 +8,9 @@ import 'package:big_cart/view/home/home_view.dart';
 import 'package:big_cart/view/login/login_view.dart';
 import 'package:big_cart/view/splash/splash_view.dart';
 
+import '../../view/categories_products/categories_products.dart';
+import '../../view/feature_products/features_products.dart';
+
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -41,6 +44,15 @@ class Routes {
       case RoutesName.categories:
         return MaterialPageRoute(
             builder: (BuildContext context) => const CategoriesView(),
+            settings: settings);
+        case RoutesName.featuresProducts:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const FeaturesProductsView(),
+            settings: settings);
+
+        case RoutesName.categoriesProducts:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const CategoriesProductsView(),
             settings: settings);
 
       default:
