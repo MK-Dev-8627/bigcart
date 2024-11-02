@@ -16,6 +16,7 @@ class RoutesName {
   static const String featuresProducts = 'features_products_view' ;
   static const String favouriteProducts = 'favourite_products_view' ;
   static const String categoriesProducts = 'categories_products_view' ;
+  static const String shoppingCart = 'shopping_cart_view' ;
 
 
 }

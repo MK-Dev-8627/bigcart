@@ -35,7 +35,6 @@ class ProductDetailsView extends StatelessWidget {
     }
 
     return Scaffold(
-        backgroundColor: AppColors.whiteColor,
         body: ChangeNotifierProvider(
           create: (BuildContext context) =>
               HomeViewModel(homeRepository: getIt())..fetchProductsListApi(),
@@ -48,7 +47,7 @@ class ProductDetailsView extends StatelessWidget {
                       height: context.mediaQueryHeight * 0.4,
                       width: context.mediaQueryWidth,
                       decoration:
-                          const BoxDecoration(color: AppColors.whiteColor),
+                           BoxDecoration(color: Theme.of(context).cardColor,),
                       child: Hero(
                           tag: '${product.name}',
                           child: Image.asset(
@@ -58,10 +57,10 @@ class ProductDetailsView extends StatelessWidget {
                     Container(
                         height: context.mediaQueryHeight * 0.6,
                         width: context.mediaQueryWidth,
-                        padding: EdgeInsets.all(20),
-                        decoration: const BoxDecoration(
-                            color: AppColors.backgroundColor,
-                            borderRadius: BorderRadius.only(
+                        padding: const EdgeInsets.all(20),
+                        decoration:  BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            borderRadius: const  BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20))),
                         child: Column(

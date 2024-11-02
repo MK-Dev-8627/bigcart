@@ -134,8 +134,6 @@ class HomeViewModel with ChangeNotifier {
   setSelectedProduct(Product value) {
     _selectedProduct = value;
     notifyListeners();
-    print('setSelectedProduct');
-    print(_selectedProduct!.toJson());
     // Notify listeners about the change
   }
 

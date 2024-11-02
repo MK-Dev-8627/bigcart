@@ -29,8 +29,7 @@ class CategoriesWidget extends StatelessWidget {
                   'Categories',
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge!
-                      .copyWith(color: AppColors.blackColor),
+                      .titleLarge
                 ),
                 InkWell(
                     onTap: () {

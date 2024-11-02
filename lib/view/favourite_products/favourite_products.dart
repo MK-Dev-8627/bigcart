@@ -12,7 +12,6 @@ class FavouriteProductsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(
         title: 'Favourite Products',
         autoImplyLeading: true,
@@ -25,7 +24,7 @@ class FavouriteProductsView extends StatelessWidget {
       body: SafeArea(
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ProductListWidget())),
+              child: FavouriteProductListWidget())),
     );
   }
 }

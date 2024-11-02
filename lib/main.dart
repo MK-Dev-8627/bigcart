@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 
 import 'configs/routes/routes.dart';
 import 'configs/routes/routes_name.dart';
+import 'view_model/shopping_cart/shopping_cart_view_model.dart';
+import 'view_model/theme/theme.dart';
 
 // creating an instance of GetIt
 // GetIt is a package used for service locator or to manage dependency injection
@@ -32,39 +34,30 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         // initializing all the view model crated with Provider to used them across the app
+        ChangeNotifierProvider(create: (_) => ThemeNotifier()),
         ChangeNotifierProvider(
             create: (_) => LoginViewModel(authRepository: getIt())),
         ChangeNotifierProvider(
             create: (_) => SignupViewModel(authRepository: getIt())),
         ChangeNotifierProvider(
             create: (_) => HomeViewModel(homeRepository: getIt())),
-      ],
-      child: MaterialApp(
-        title: 'Big Cart',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          primaryColor: AppColors.primaryColor,
-          backgroundColor: AppColors.backgroundColor,
-          canvasColor: AppColors.textColor,
-          cardColor: AppColors.whiteColor,
-          iconTheme: const IconThemeData(
-            color: AppColors.textColor, // Set the default icon color here
-            // size: 30, // Optional: You can also change the default size of icons
+        ChangeNotifierProxyProvider<HomeViewModel, ShoppingCartViewModel>(
+          create: (context) => ShoppingCartViewModel(
+            homeViewModel: context.read<HomeViewModel>(),
           ),
-          fontFamily: 'poppins',
-          textTheme: const TextTheme(
-            titleLarge: TextStyle(color: AppColors.blackColor,fontWeight: FontWeight.w600,fontSize: 18),
-            titleMedium: TextStyle(color: AppColors.textColor,fontWeight: FontWeight.w600,fontSize: 15),
-            titleSmall: TextStyle(color: AppColors.textColor,),
-            bodyLarge: TextStyle(color: AppColors.textColor),
-            bodyMedium: TextStyle(color: AppColors.textColor),
-            bodySmall: TextStyle(color: AppColors.textColor),
-          ),
+          update: (context, homeViewModel, shoppingCartViewModel) =>
+          shoppingCartViewModel!,
         ),
-        // this is the initial route indicating from where our app will start
-        initialRoute: RoutesName.splash,
-        onGenerateRoute: Routes.generateRoute,
+      ],
+      child: Consumer<ThemeNotifier>(
+        builder: (key, theme, child) => MaterialApp(
+          title: 'Big Cart',
+          debugShowCheckedModeBanner: false,
+          theme: theme.getTheme(),
+          // this is the initial route indicating from where our app will start
+          initialRoute: RoutesName.splash,
+          onGenerateRoute: Routes.generateRoute,
+        ),
       ),
     );
   }

@@ -16,7 +16,6 @@ class CategoriesProductsView extends StatelessWidget {
     ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
 
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(title: '${args!['category']}',autoImplyLeading: true,actionWidgets: [
         IconButton(
             onPressed: (){},
@@ -25,7 +24,7 @@ class CategoriesProductsView extends StatelessWidget {
       body:  SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0,top: 10.0,right: 20.0,),
-            child: ProductListWidget()
+            child: CategoriesProductListWidget()
           )),
     );
   }

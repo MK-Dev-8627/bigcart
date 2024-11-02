@@ -3,10 +3,11 @@ class Product {
   String? image;
   String? unit;
   String? price;
+  String? currency;
   bool? isFav;
   bool? isAdded;
   bool? disOffer;
-  String? discount;
+  double? discount;
   bool? isNew;
   bool? showLabel;
   int? qty;
@@ -18,6 +19,7 @@ class Product {
     this.image,
     this.unit,
     this.price,
+    this.currency,
     this.qty,
     this.isFav,
     this.isAdded,
@@ -34,6 +36,7 @@ class Product {
     image = json['image'];
     unit = json['unit'];
     price = json['price'];
+    currency = json['currency'];
     qty = json['qty'];
     isFav = json['isFav'];
     isAdded = json['isAdded'];
@@ -51,6 +54,7 @@ class Product {
     data['image'] = this.image;
     data['unit'] = this.unit;
     data['price'] = this.price;
+    data['currency'] = this.currency;
     data['qty'] = this.qty;
     data['isFav'] = this.isFav;
     data['isAdded'] = this.isAdded;

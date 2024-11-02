@@ -12,7 +12,6 @@ class FeaturesProductsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(title: 'Features Products',autoImplyLeading: true,actionWidgets: [
         IconButton(
             onPressed: (){},
@@ -21,7 +20,7 @@ class FeaturesProductsView extends StatelessWidget {
       body:  SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: ProductListWidget()
+            child: FeaturesProductListWidget()
           )),
     );
   }

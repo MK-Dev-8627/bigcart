@@ -23,7 +23,6 @@ class CarouselSliderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.whiteColor,
       height: context.mediaQueryHeight * 0.25,
       width: context.mediaQueryWidth,
 

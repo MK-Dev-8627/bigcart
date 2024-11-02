@@ -26,7 +26,7 @@ class QuantityWidget extends StatelessWidget {
           width: context.mediaQueryWidth,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: AppColors.whiteColor, borderRadius: BorderRadius.circular(5)),
+              color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(5)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -52,8 +52,7 @@ class QuantityWidget extends StatelessWidget {
                       '${product!.qty}',
                       style: Theme.of(context)
                           .textTheme
-                          .titleLarge!
-                          .copyWith(color: AppColors.blackColor),
+                          .titleLarge
                     ),
                   ),
                   const VerticalDivider(

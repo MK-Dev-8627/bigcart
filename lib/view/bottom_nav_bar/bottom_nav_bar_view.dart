@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:big_cart/configs/assets/image_assets.dart';
 import 'package:big_cart/configs/color/color.dart';
+import 'package:big_cart/view/shopping_cart/shopping_cart.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -40,12 +41,9 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
         child: Text('Account'),
       ),
       FavouriteProductsView(),
-      Center(
-        child: Text('Cart'),
-      ),
+      ShoppingCartView(),
     ];
     return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
         body: bottomBarPages[_page],
         extendBody: true,
         bottomNavigationBar: CurvedNavigationBar(
@@ -65,9 +63,9 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
                 color: _page == 3 ? AppColors.whiteColor : AppColors.textColor,
                 size: 30)
           ],
-          color: AppColors.whiteColor,
+          color: Theme.of(context).cardColor,
           buttonBackgroundColor: AppColors.primaryDarkColor,
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {

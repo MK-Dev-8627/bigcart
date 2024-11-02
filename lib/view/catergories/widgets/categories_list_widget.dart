@@ -33,12 +33,12 @@ class CategoriesListWidget extends StatelessWidget {
               Constants.categories.elementAt(index);
               return Hero(
                 tag: '${category['image']}',
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
+                child: Card(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [

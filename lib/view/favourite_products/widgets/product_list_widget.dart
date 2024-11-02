@@ -1,4 +1,5 @@
 import 'package:big_cart/configs/assets/image_assets.dart';
+import 'package:big_cart/configs/components/product_card_widget.dart';
 import 'package:big_cart/configs/extensions.dart';
 import 'package:big_cart/configs/routes/routes_name.dart';
 import 'package:big_cart/main.dart';
@@ -12,14 +13,14 @@ import '../../../configs/color/color.dart';
 import '../../../model/product/product_model.dart';
 import '../../../view_model/home/home_view_model.dart';
 
-class ProductListWidget extends StatefulWidget {
-  const ProductListWidget({super.key});
+class FavouriteProductListWidget extends StatefulWidget {
+  const FavouriteProductListWidget({super.key});
 
   @override
-  State<ProductListWidget> createState() => _ProductListWidgetState();
+  State<FavouriteProductListWidget> createState() => _FavouriteProductListWidgetState();
 }
 
-class _ProductListWidgetState extends State<ProductListWidget> {
+class _FavouriteProductListWidgetState extends State<FavouriteProductListWidget> {
   @override
   void initState() {
     // TODO: implement initState
@@ -48,150 +49,11 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           itemCount: provider.favProductsList.length,
           itemBuilder: (context, index) {
             final product = provider.favProductsList[index];
-            return GestureDetector(
-              onTap: () async {
-                Navigator.pushNamed(
-                  context,
-                  RoutesName.productDetails,
-                  arguments: {'product': product, 'index': index},
-                );
-              },
-              child: _buildProductCard(context, product, provider, index),
-            );
+            return ProductCard(product: product, provider: provider, index: index);
           },
         ),
       );
     });
   }
 
-  Widget _buildProductCard(BuildContext context, Product product,
-      HomeViewModel provider, int index) {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              product.showLabel ?? false
-                  ? Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: product.disOffer ?? false
-                            ? AppColors.redColor.withOpacity(0.5)
-                            : AppColors.primaryLightColor,
-                      ),
-                      child: Text(
-                        product.disOffer ?? false
-                            ? product.discount ?? ""
-                            : 'New',
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              color: product.disOffer ?? false
-                                  ? AppColors.redColor
-                                  : AppColors.primaryDarkColor,
-                            ),
-                      ),
-                    )
-                  : const SizedBox.shrink(),
-              IconButton(
-                onPressed: () => provider.removeFavProduct(index),
-                icon: Icon(
-                  product.isFav ?? false
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: product.isFav ?? false ? AppColors.redColor : null,
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-              child: Hero(
-                  tag: '${product.name}',
-                  child: Image.asset(product.image ?? ""))),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              children: [
-                Text(
-                  product.price ?? "",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: AppColors.primaryDarkColor),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  product.name ?? "",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  product.unit ?? "",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-          ),
-          const Divider(height: 2, thickness: 2),
-          _buildCartControls(context, product, provider, index),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCartControls(BuildContext context, Product product,
-      HomeViewModel provider, int index) {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.all(10.0),
-      child: product.isAdded ?? false
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () => provider.removeProductQty(index),
-                  icon: const ImageIcon(AssetImage(ImageAssets.minus),
-                      size: 20, color: AppColors.primaryDarkColor),
-                ),
-                Text(
-                  '${product.qty}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: AppColors.blackColor),
-                ),
-                IconButton(
-                  onPressed: () => provider.addProductQty(index),
-                  icon: const ImageIcon(AssetImage(ImageAssets.plus),
-                      size: 30, color: AppColors.primaryDarkColor),
-                ),
-              ],
-            )
-          : GestureDetector(
-              onTap: () =>
-                  provider.setAddToCart(product.isAdded ?? false, index),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const ImageIcon(AssetImage(ImageAssets.cart),
-                      color: AppColors.primaryDarkColor),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Add to cart',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: AppColors.blackColor),
-                  ),
-                ],
-              ),
-            ),
-    );
-  }
 }

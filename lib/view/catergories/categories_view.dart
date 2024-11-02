@@ -12,7 +12,6 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(title: 'Categories',autoImplyLeading: true,actionWidgets: [
         IconButton(
             onPressed: (){},

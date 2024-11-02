@@ -1,6 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
@@ -52,6 +53,44 @@ class Utils {
       SnackBar(
         backgroundColor: Colors.red,
         content: Text(message ))
+    );
+  }
+
+  static ActionPane editDeleteSlidableAction({
+    Function(BuildContext)? onEditPressed,
+    Function(BuildContext)? onDeletePressed,
+  }) {
+    return ActionPane(
+      motion: StretchMotion(),
+      children: [
+        SlidableAction(
+          backgroundColor: Colors.green,
+          icon: Icons.edit,
+          label: 'Edit',
+          onPressed: onEditPressed,
+        ),
+        SlidableAction(
+          backgroundColor: Colors.red,
+          icon: Icons.delete,
+          label: 'Delete',
+          onPressed: onDeletePressed,
+        ),
+      ],
+    );
+  }
+  static ActionPane deleteSlidableAction({
+    Function(BuildContext)? onDeletePressed,
+  }) {
+    return ActionPane(
+      motion: StretchMotion(),
+      children: [
+        SlidableAction(
+          backgroundColor: Colors.red,
+          icon: Icons.delete,
+          label: 'Delete',
+          onPressed: onDeletePressed,
+        ),
+      ],
     );
   }
 
