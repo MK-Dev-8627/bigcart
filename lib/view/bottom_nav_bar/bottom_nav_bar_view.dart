@@ -8,6 +8,7 @@ import 'package:big_cart/view/shopping_cart/shopping_cart.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../account/account_view.dart';
 import '../favourite_products/favourite_products.dart';
 import '../home/home_view.dart';
 
@@ -37,9 +38,7 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
     /// widget list
     final List<Widget> bottomBarPages = [
       HomeView(),
-      Center(
-        child: Text('Account'),
-      ),
+      AccountView(),
       FavouriteProductsView(),
       ShoppingCartView(),
     ];

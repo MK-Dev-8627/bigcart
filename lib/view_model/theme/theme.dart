@@ -1,4 +1,3 @@
-
 import 'package:big_cart/view_model/theme/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -6,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../configs/color/color.dart';
 import '../../configs/constants/constants.dart';
-
 
 class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
   @override
@@ -62,7 +60,6 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
     highlightColor: const Color(0xffF0536B), // Icons BG Color
     // dialogBackgroundColor: Colors.white,
     toggleableActiveColor: AppColors.primaryColor,
-
   );
 
   final lightTheme = ThemeData(
@@ -81,17 +78,25 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
     scaffoldBackgroundColor: AppColors.backgroundColor, //Backgorund Color
     // shadowColor: Colors.transparent,
     shadowColor: Color(0xff000000).withOpacity(0.1),
-    canvasColor: AppColors.textColor,// Button Color, Drawar Icons Color
+    canvasColor: AppColors.textColor, // Button Color, Drawar Icons Color
     cardColor: const Color(0xffffffff),
     highlightColor: AppColors.primaryColor, // Icons BG Color
-    dialogBackgroundColor: const  Color(0xffffffff),//Color(0xffF1F4FF),
+    dialogBackgroundColor: const Color(0xffffffff), //Color(0xffF1F4FF),
     toggleableActiveColor: AppColors.primaryColor,
     fontFamily: 'poppins',
     textTheme: const TextTheme(
       headlineLarge: TextStyle(color: AppColors.blackColor),
-      titleLarge: TextStyle(color: AppColors.blackColor,fontWeight: FontWeight.w600,fontSize: 18),
-      titleMedium: TextStyle(color: AppColors.textColor,fontWeight: FontWeight.w600,fontSize: 15),
-      titleSmall: TextStyle(color: AppColors.textColor,),
+      titleLarge: TextStyle(
+          color: AppColors.blackColor,
+          fontWeight: FontWeight.w600,
+          fontSize: 18),
+      titleMedium: TextStyle(
+          color: AppColors.textColor,
+          fontWeight: FontWeight.w600,
+          fontSize: 15),
+      titleSmall: TextStyle(
+        color: AppColors.textColor,
+      ),
       bodyLarge: TextStyle(color: AppColors.textColor),
       bodyMedium: TextStyle(color: AppColors.textColor),
       bodySmall: TextStyle(color: AppColors.textColor),
@@ -119,7 +124,6 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
     });
   }
 
-
   void getStoreValue() async {
     final prefs = await SharedPreferences.getInstance();
     if (prefs.getBool("themeValue") != null) {
@@ -133,7 +137,6 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
   }
 
   void setTheme({required bool themeValue}) async {
-
     Constants.themValue = themeValue;
     if (themeValue == false) {
       _themeData = lightTheme;
@@ -145,6 +148,16 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
       notifyListeners();
     }
     print('value updated.....');
+    notifyListeners();
+  }
+
+  bool _isDarkMode = false;
+  bool get isDarkMode => _isDarkMode;
+  void onThemeChange(BuildContext context, bool value) {
+    _isDarkMode = !_isDarkMode;
+    // _isDarkMode = value;
+    setTheme(themeValue: _isDarkMode);
+
     notifyListeners();
   }
 }

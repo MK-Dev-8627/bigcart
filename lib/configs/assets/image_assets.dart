@@ -6,6 +6,8 @@ class ImageAssets {
   static const String login = 'assets/images/login.png' ;
   static const String login1 = 'assets/images/login1.png' ;
   static const String signup = 'assets/images/signup.png' ;
+  static const String user = 'assets/images/user.png' ;
+  static const String mkDev = 'assets/images/MKDev.png' ;
 
 // Icons
   static const String home = 'assets/icons/home.png' ;
@@ -15,6 +17,14 @@ class ImageAssets {
   static const String filters = 'assets/icons/filters.png' ;
   static const String plus = 'assets/icons/plus.png' ;
   static const String minus = 'assets/icons/minus.png' ;
+  static const String order = 'assets/icons/order.png' ;
+  static const String location = 'assets/icons/location.png' ;
+  static const String creditCard = 'assets/icons/creditCard.png' ;
+  static const String transactions = 'assets/icons/transactions.png' ;
+  static const String notification = 'assets/icons/notification.png' ;
+  static const String darkMode = 'assets/icons/darkMode.png' ;
+  static const String camera = 'assets/icons/camera.png' ;
+  static const String logout = 'assets/icons/logout.png' ;
 
 // Categories
   static const String vegetables = 'assets/images/vegatable.png' ;

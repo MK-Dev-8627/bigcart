@@ -1,5 +1,7 @@
+import 'package:big_cart/view/account/account_view.dart';
 import 'package:big_cart/view/bottom_nav_bar/bottom_nav_bar_view.dart';
 import 'package:big_cart/view/catergories/categories_view.dart';
+import 'package:big_cart/view/favourite_products/favourite_products.dart';
 import 'package:big_cart/view/product_details/product_details_view.dart';
 import 'package:big_cart/view/signup/signup_view.dart';
 import 'package:flutter/material.dart';
@@ -50,13 +52,22 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const FeaturesProductsView(),
             settings: settings);
+
+        case RoutesName.featuresProducts:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const FavouriteProductsView(),
+            settings: settings);
       case RoutesName.categoriesProducts:
         return MaterialPageRoute(
             builder: (BuildContext context) => const CategoriesProductsView(),
             settings: settings);
-        case RoutesName.shoppingCart:
+      case RoutesName.shoppingCart:
         return MaterialPageRoute(
             builder: (BuildContext context) => const ShoppingCartView(),
+            settings: settings);
+      case RoutesName.accountView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AccountView(),
             settings: settings);
 
       default:
