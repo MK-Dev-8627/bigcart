@@ -18,6 +18,14 @@ class LoginViewModel with ChangeNotifier {
   }
 
   //creating getter method to store value of input email
+  TextEditingController nameController = TextEditingController();
+  String _name = '';
+  String get name => _name;
+
+  setName(String name) {
+    _name = name;
+  }
+  //creating getter method to store value of input email
   TextEditingController emailController = TextEditingController();
   String _email = '';
   String get email => _email;
@@ -50,6 +58,22 @@ class LoginViewModel with ChangeNotifier {
 
   setPassword(String password) {
     _password = password;
+  }
+//creating getter method to store value of input newPassword
+  TextEditingController newPasswordController = TextEditingController();
+  String _newPassword = '';
+  String get newPassword => _newPassword;
+
+  setNewPassword(String newPassword) {
+    _newPassword = newPassword;
+  }
+//creating getter method to store value of input confirmPassword
+  TextEditingController confirmPasswordController = TextEditingController();
+  String _confirmPassword = '';
+  String get confirmPassword => _confirmPassword;
+
+  setConfirmPassword(String confirmPassword) {
+    _confirmPassword = confirmPassword;
   }
 
   Future<UserModel> loginApi(dynamic data) async {

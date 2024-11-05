@@ -1,5 +1,6 @@
 import 'package:big_cart/configs/color/color.dart';
 import 'package:big_cart/view_model/signup/signup_view_model.dart';
+import 'package:big_cart/view_model/transactions/transactions_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:big_cart/repository/auth_api/auth_http_api_repository.dart';
 import 'package:big_cart/repository/auth_api/auth_repository.dart';
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
           update: (context, homeViewModel, shoppingCartViewModel) =>
           shoppingCartViewModel!,
         ),
+        ChangeNotifierProvider(
+            create: (_) => TransactionsViewModel()),
       ],
       child: Consumer<ThemeNotifier>(
         builder: (key, theme, child) => MaterialApp(

@@ -10,9 +10,11 @@ import 'package:big_cart/view/home/home_view.dart';
 import 'package:big_cart/view/login/login_view.dart';
 import 'package:big_cart/view/splash/splash_view.dart';
 
+import '../../view/about_me/about_me_view.dart';
 import '../../view/categories_products/categories_products.dart';
 import '../../view/feature_products/features_products.dart';
 import '../../view/shopping_cart/shopping_cart.dart';
+import '../../view/transactions/transactions_view.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -53,7 +55,7 @@ class Routes {
             builder: (BuildContext context) => const FeaturesProductsView(),
             settings: settings);
 
-        case RoutesName.featuresProducts:
+      case RoutesName.featuresProducts:
         return MaterialPageRoute(
             builder: (BuildContext context) => const FavouriteProductsView(),
             settings: settings);
@@ -68,6 +70,14 @@ class Routes {
       case RoutesName.accountView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const AccountView(),
+            settings: settings);
+      case RoutesName.aboutMeView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AboutMeView(),
+            settings: settings);
+      case RoutesName.transactionsView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const TransactionsView(),
             settings: settings);
 
       default:

@@ -25,6 +25,9 @@ class ImageAssets {
   static const String darkMode = 'assets/icons/darkMode.png' ;
   static const String camera = 'assets/icons/camera.png' ;
   static const String logout = 'assets/icons/logout.png' ;
+  static const String paypal = 'assets/icons/paypal.png' ;
+  static const String masterCard = 'assets/icons/masterCard.png' ;
+  static const String visa = 'assets/icons/visa.png' ;
 
 // Categories
   static const String vegetables = 'assets/images/vegatable.png' ;

@@ -59,6 +59,7 @@ class AccountView extends StatelessWidget {
               Column(
                 children: [
                   ListTile(
+                    onTap: ()=> Navigator.pushNamedAndRemoveUntil(context, RoutesName.aboutMeView, (route) => true),
                     leading: const ImageIcon(
                       AssetImage(ImageAssets.account),
                       color: AppColors.primaryDarkColor,
@@ -115,6 +116,7 @@ class AccountView extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                   ListTile(
+                    onTap: ()=> Navigator.pushNamedAndRemoveUntil(context, RoutesName.transactionsView, (route) => true),
                     leading: const ImageIcon(
                       AssetImage(ImageAssets.transactions),
                       color: AppColors.primaryDarkColor,

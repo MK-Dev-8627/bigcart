@@ -18,6 +18,8 @@ class RoutesName {
   static const String categoriesProducts = 'categories_products_view' ;
   static const String shoppingCart = 'shopping_cart_view' ;
   static const String accountView = 'account_view' ;
+  static const String aboutMeView = 'about_me_view' ;
+  static const String transactionsView = 'transactions_view' ;
 
 
 }

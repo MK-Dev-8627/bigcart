@@ -1,4 +1,5 @@
 import 'package:big_cart/configs/assets/image_assets.dart';
+import 'package:big_cart/model/transactions/transactions_model.dart';
 
 import '../../model/product/product_model.dart';
 
@@ -126,6 +127,52 @@ class Constants {
       discount: 0,
       description:
           '''Organic Mountain works as a seller for many organic growers of organic lemons. Organic lemons are easy to spot in your produce aisle. They are just like regular lemons, but they will usually have a few more scars on the outside of the lemon skin. Organic lemons are considered to be the world's finest lemon for juicing''',
+    ),
+  ];
+
+  static List<Transaction> transactionsList = [
+    Transaction(
+      id: 0,
+      cardName: 'Master Card',
+      amount: '89',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 1,
+      cardName: 'Visa Card',
+      amount: '139',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 2,
+      cardName: 'Paypal',
+      amount: '67',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 3,
+      cardName: 'Master Card',
+      amount: '250',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 4,
+      cardName: 'Master Card',
+      amount: '89',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 5,
+      cardName: 'Paypal',
+      amount: '123',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
+    ),Transaction(
+      id: 6,
+      cardName: 'Visa Card',
+      amount: '550',
+      currency: '\$',
+      timeDate: 'Dec 12 2021 at 10:00 pm'
     ),
   ];
 }
