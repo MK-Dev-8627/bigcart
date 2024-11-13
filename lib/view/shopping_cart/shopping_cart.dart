@@ -1,3 +1,5 @@
+import 'package:big_cart/configs/assets/image_assets.dart';
+import 'package:big_cart/configs/color/color.dart';
 import 'package:big_cart/configs/constants/constants.dart';
 import 'package:big_cart/configs/extensions.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,8 +11,25 @@ import '../../view_model/shopping_cart/shopping_cart_view_model.dart';
 import 'widgets/cart_product_list_widget.dart';
 import 'widgets/checkout_button_widget.dart';
 
-class ShoppingCartView extends StatelessWidget {
+class ShoppingCartView extends StatefulWidget {
   const ShoppingCartView({super.key});
+
+  @override
+  State<ShoppingCartView> createState() => _ShoppingCartViewState();
+}
+
+class _ShoppingCartViewState extends State<ShoppingCartView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // Schedule fetchFavProductsList to run after the build phase
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final provider =
+      Provider.of<ShoppingCartViewModel>(context, listen: false);
+      provider.fetchCartProductsList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,25 +39,48 @@ class ShoppingCartView extends StatelessWidget {
         autoImplyLeading: true,
       ),
       body: SafeArea(
-          child: Column(
-            children: [
-              20.height,
-              Expanded(
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: CartProductListWidget(),
-                ),
-              ),
-              20.height,
-              buildCalculationContainer(context),
-            ],
-          )),
+        child: Consumer<ShoppingCartViewModel>(builder: (context, provider, _) {
+          return provider.cartProductsList.isEmpty
+              ? Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const ImageIcon(
+                        AssetImage(ImageAssets.cart),
+                        color: AppColors.primaryDarkColor,
+                        size: 100,
+                      ),
+                      20.height,
+                      Text(
+                        'Your cart is empty !',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      )
+                    ],
+                  ),
+              )
+              : Column(
+                  children: [
+                    20.height,
+                    const Expanded(
+                      child:  Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: CartProductListWidget(),
+                      ),
+                    ),
+                    20.height,
+                    buildCalculationContainer(context),
+                  ],
+                );
+        }),
+      ),
       // bottomNavigationBar: buildCalculationContainer(context)
     );
   }
 
   Widget buildCalculationContainer(BuildContext context) {
-    return Consumer<ShoppingCartViewModel>(builder: (context, provider,_){
+    return Consumer<ShoppingCartViewModel>(builder: (context, provider, _) {
       return Container(
         width: context.mediaQueryWidth,
         color: Theme.of(context).cardColor,
@@ -87,7 +129,10 @@ class ShoppingCartView extends StatelessWidget {
               ],
             ),
             20.height,
-            Divider(height: 2,thickness: 2,),
+            Divider(
+              height: 2,
+              thickness: 2,
+            ),
             20.height,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

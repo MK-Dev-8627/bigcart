@@ -1,10 +1,10 @@
 import 'package:big_cart/configs/assets/image_assets.dart';
 import 'package:big_cart/model/transactions/transactions_model.dart';
 
+import '../../model/address/address_model.dart';
 import '../../model/product/product_model.dart';
 
 class Constants {
-
   static bool? themValue = false;
   static String currency = "\$";
   static double shippingCharges = 2.0;
@@ -132,47 +132,71 @@ class Constants {
 
   static List<Transaction> transactionsList = [
     Transaction(
+        id: 0,
+        cardName: 'Master Card',
+        amount: '89',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 1,
+        cardName: 'Visa Card',
+        amount: '139',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 2,
+        cardName: 'Paypal',
+        amount: '67',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 3,
+        cardName: 'Master Card',
+        amount: '250',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 4,
+        cardName: 'Master Card',
+        amount: '89',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 5,
+        cardName: 'Paypal',
+        amount: '123',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+    Transaction(
+        id: 6,
+        cardName: 'Visa Card',
+        amount: '550',
+        currency: '\$',
+        timeDate: 'Dec 12 2021 at 10:00 pm'),
+  ];
+
+  static List<MyAddress> myAddressList = [
+    MyAddress(
       id: 0,
-      cardName: 'Master Card',
-      amount: '89',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
+      name: "MK Dev",
+      phone: "+92 3123456789",
+      address: "Bahira Town Phase 7",
+      city: 'Rawalpindi',
+      zipcode: '46620',
+      country: "Pakistan",
+      show: true,
+      makeDefault: false,
+    ),
+    MyAddress(
       id: 1,
-      cardName: 'Visa Card',
-      amount: '139',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
-      id: 2,
-      cardName: 'Paypal',
-      amount: '67',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
-      id: 3,
-      cardName: 'Master Card',
-      amount: '250',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
-      id: 4,
-      cardName: 'Master Card',
-      amount: '89',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
-      id: 5,
-      cardName: 'Paypal',
-      amount: '123',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
-    ),Transaction(
-      id: 6,
-      cardName: 'Visa Card',
-      amount: '550',
-      currency: '\$',
-      timeDate: 'Dec 12 2021 at 10:00 pm'
+      name: "MK Dev",
+      phone: "+92 3123456789",
+      address: "Bahira Town Phase 8",
+      city: 'Rawalpindi',
+      zipcode: '46620',
+      country: "Pakistan",
+      show: false,
+      makeDefault: false,
     ),
   ];
 }

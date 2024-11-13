@@ -22,7 +22,7 @@ class CheckOutButtonWidget extends StatelessWidget {
             title: 'Checkout',
             // loading: provider.loading ? true : false,
             onPress: (){
-                // Navigator.pushNamed(context, RoutesName.bottomNavBarView);
+                Navigator.pushNamedAndRemoveUntil(context, RoutesName.shippingView, (route) => true);
             },
           );
         }

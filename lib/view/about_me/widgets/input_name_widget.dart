@@ -21,14 +21,14 @@ class InputNameWidget extends StatelessWidget {
         controller: provider.nameController,
         focusNode: focusNode,
         keyboardType: TextInputType.text,
-        fillColor: AppColors.whiteColor,
+        fillColor: Theme.of(context).cardColor,
         onFieldSubmitted: (value) {
           Utils.fieldFocusChange(context, focusNode, emailFocusNode);
         },
         onChanged: (value) {
           provider.setName(value!);
         },
-        prefixIcon: Icon(Icons.account_circle_outlined),
+        prefixIcon: Icon(Icons.account_circle_outlined,size: 30,),
       );
 
       /*  TextFormField(

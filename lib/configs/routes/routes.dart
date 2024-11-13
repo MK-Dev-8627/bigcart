@@ -11,8 +11,11 @@ import 'package:big_cart/view/login/login_view.dart';
 import 'package:big_cart/view/splash/splash_view.dart';
 
 import '../../view/about_me/about_me_view.dart';
+import '../../view/address/add_new_address.dart';
+import '../../view/address/my_address.dart';
 import '../../view/categories_products/categories_products.dart';
 import '../../view/feature_products/features_products.dart';
+import '../../view/shipping/shipping_view.dart';
 import '../../view/shopping_cart/shopping_cart.dart';
 import '../../view/transactions/transactions_view.dart';
 
@@ -55,7 +58,7 @@ class Routes {
             builder: (BuildContext context) => const FeaturesProductsView(),
             settings: settings);
 
-      case RoutesName.featuresProducts:
+      case RoutesName.favouriteProducts:
         return MaterialPageRoute(
             builder: (BuildContext context) => const FavouriteProductsView(),
             settings: settings);
@@ -78,6 +81,18 @@ class Routes {
       case RoutesName.transactionsView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const TransactionsView(),
+            settings: settings);
+      case RoutesName.shippingView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const ShippingView(),
+            settings: settings);
+      case RoutesName.myAddressView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const MyAddressView(),
+            settings: settings);
+        case RoutesName.addAddressView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AddAddressView(),
             settings: settings);
 
       default:

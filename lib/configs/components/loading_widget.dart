@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:big_cart/configs/color/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +18,11 @@ class LoadingWidget extends StatelessWidget {
         height: size,
         child: Platform.isIOS
             ? const CupertinoActivityIndicator(
-          color: Colors.blue,
+          color: AppColors.primaryDarkColor,
         )
             : const CircularProgressIndicator(
           strokeWidth: 2.0,
-          color: Colors.blue,
+          color: AppColors.primaryDarkColor,
         ),
       ),
     );

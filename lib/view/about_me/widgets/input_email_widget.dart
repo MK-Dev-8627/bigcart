@@ -7,9 +7,9 @@ import '../../../configs/components/custom_textfiled.dart';
 import '../../../configs/utils.dart';
 
 class InputEmailWidget extends StatelessWidget {
-  final FocusNode focusNode, passwordFocusNode;
+  final FocusNode focusNode, phoneFocusNode;
   const InputEmailWidget(
-      {Key? key, required this.focusNode, required this.passwordFocusNode})
+      {Key? key, required this.focusNode, required this.phoneFocusNode})
       : super(key: key);
 
   @override
@@ -21,14 +21,14 @@ class InputEmailWidget extends StatelessWidget {
         controller: provider.emailController,
         focusNode: focusNode,
         keyboardType: TextInputType.emailAddress,
-        fillColor: AppColors.whiteColor,
+        fillColor: Theme.of(context).cardColor,
         onFieldSubmitted: (value) {
-          Utils.fieldFocusChange(context, focusNode, passwordFocusNode);
+          Utils.fieldFocusChange(context, focusNode, phoneFocusNode);
         },
         onChanged: (value) {
           provider.setEmail(value!);
         },
-        prefixIcon: Icon(Icons.email_outlined),
+        prefixIcon: Icon(Icons.email_outlined,size: 30,),
       );
 
       /*  TextFormField(

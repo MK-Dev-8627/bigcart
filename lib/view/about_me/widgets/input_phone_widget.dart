@@ -22,14 +22,14 @@ class InputPhoneWidget extends StatelessWidget {
         controller: provider.phoneController,
         focusNode: focusNode,
         keyboardType: TextInputType.number,
-        fillColor: AppColors.whiteColor,
+        fillColor: Theme.of(context).cardColor,
         onFieldSubmitted: (value) {
           Utils.fieldFocusChange(context, focusNode, passwordFocusNode);
         },
         onChanged: (value) {
           provider.setPhone(value!);
         },
-        prefixIcon: Icon(Icons.phone),
+        prefixIcon: Icon(Icons.phone_outlined,size: 30,),
       );
 
       /*  TextFormField(

@@ -1,14 +1,15 @@
 import 'package:big_cart/configs/extensions.dart';
-import 'package:big_cart/view/about_me/widgets/input_confirm_password_widget.dart';
-import 'package:big_cart/view/about_me/widgets/input_new_password_widget.dart';
-import 'package:big_cart/view/about_me/widgets/input_password_widget.dart';
-import 'package:big_cart/view/signup/widgets/input_email_widget.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../configs/components/custom_appbar.dart';
 import 'widgets/input_name_widget.dart';
 import 'widgets/input_phone_widget.dart';
 import 'widgets/save_button_widget.dart';
+import 'widgets/input_confirm_password_widget.dart';
+import 'widgets/input_new_password_widget.dart';
+import 'widgets/input_password_widget.dart';
+import 'widgets/input_email_widget.dart';
 
 class AboutMeView extends StatefulWidget {
   const AboutMeView({super.key});
@@ -62,7 +63,7 @@ class _AboutMeViewState extends State<AboutMeView> {
                     10.height,
                     InputEmailWidget(
                         focusNode: emailFocusNode,
-                        phoneFocusNode: phoneFocusNode),
+                        phoneFocusNode: phoneFocusNode,),
                     10.height,
                     InputPhoneWidget(
                         focusNode: phoneFocusNode,

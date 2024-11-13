@@ -22,18 +22,19 @@ class InputCurrentPasswordWidget extends StatelessWidget {
           builder: (context, value, child) {
             return CustomTextField(
               controller: provider.passwordController, focusNode: focusNode,
-              fillColor: AppColors.whiteColor,
+
               hintText: 'Current Password',
               // labelText: 'Password',
               obscureText: _obSecurePassword.value,
-              prefixIcon: const Icon(Icons.lock_outlined),
+              fillColor: Theme.of(context).cardColor,
+              prefixIcon: const Icon(Icons.lock_outlined,size: 30,),
               suffixIcon: InkWell(
                   onTap: () {
                     _obSecurePassword.value = !_obSecurePassword.value;
                   },
                   child: Icon(_obSecurePassword.value
                       ? Icons.visibility_off_outlined
-                      : Icons.visibility)),
+                      : Icons.visibility,size: 20,)),
               onFieldSubmitted: (value) {
                 Utils.fieldFocusChange(context, focusNode, newPwdFocusNode);
               },

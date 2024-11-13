@@ -49,6 +49,7 @@ dependencies:
   skeletonizer: ^1.4.2
   carousel_slider: ^5.0.0
   flutter_slidable: ^3.1.1
+  easy_stepper: ^0.8.5+1
 
 
 

@@ -1,6 +1,4 @@
 import 'package:big_cart/configs/assets/image_assets.dart';
-import 'package:big_cart/configs/color/color.dart';
-import 'package:big_cart/configs/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../configs/components/custom_appbar.dart';
@@ -13,7 +11,7 @@ class FavouriteProductsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Favourite Products',
+        title: 'Products',
         autoImplyLeading: true,
         actionWidgets: [
           IconButton(
@@ -22,9 +20,11 @@ class FavouriteProductsView extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: FavouriteProductListWidget())),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: FavouriteProductListWidget(),
+        ),
+      ),
     );
   }
 }

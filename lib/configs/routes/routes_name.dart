@@ -20,6 +20,9 @@ class RoutesName {
   static const String accountView = 'account_view' ;
   static const String aboutMeView = 'about_me_view' ;
   static const String transactionsView = 'transactions_view' ;
+  static const String shippingView = 'shipping_view' ;
+  static const String myAddressView = 'myAddress_view' ;
+  static const String addAddressView = 'add_address_view' ;
 
 
 }

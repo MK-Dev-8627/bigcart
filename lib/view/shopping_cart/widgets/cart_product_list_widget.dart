@@ -14,30 +14,12 @@ import '../../../model/product/product_model.dart';
 import '../../../view_model/home/home_view_model.dart';
 import '../../../view_model/shopping_cart/shopping_cart_view_model.dart';
 
-class CartProductListWidget extends StatefulWidget {
+class CartProductListWidget extends StatelessWidget {
   const CartProductListWidget({super.key});
-
-  @override
-  State<CartProductListWidget> createState() => _CartProductListWidgetState();
-}
-
-class _CartProductListWidgetState extends State<CartProductListWidget> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // Schedule fetchFavProductsList to run after the build phase
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final provider =
-          Provider.of<ShoppingCartViewModel>(context, listen: false);
-      provider.fetchCartProductsList();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ShoppingCartViewModel>(builder: (context, provider, _) {
-      print('FavScreen:   ${provider.cartProductsList}');
       return Skeletonizer(
         enabled: provider.loading,
         child: ListView.builder(

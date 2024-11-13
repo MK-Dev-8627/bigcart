@@ -72,7 +72,7 @@ class ShoppingCartViewModel with ChangeNotifier {
     productsList.forEach((element) {
       if (element.isAdded ?? false) {
         _cartProductsList.add(element);
-        print("${element.toJson()}");
+        // print("${element.toJson()}");
       }
     });
 
@@ -148,4 +148,26 @@ class ShoppingCartViewModel with ChangeNotifier {
         '_subtotal:  $_subtotal, _totalDiscount:  $_totalDiscount, _totalAmount: $_totalAmount');
     notifyListeners();
   }
+
+
+  int _activeStep = 0;
+  double _progress = 0.0;
+
+  int get activeStep => _activeStep;
+  double get progress => _progress;
+
+  void setActiveStep(int value){
+    _activeStep = value;
+    notifyListeners();
+  }
+  void setProgress(double value){
+    _progress = value;
+    notifyListeners();
+  }
+
+  List<Map<String, dynamic>> deliveryList =[
+    {"title":"Standard Delivery","subTitle":"Order will be delivered between 3 - 4 business days straights to your doorstep.","amount":"3"},
+    {"title":"Next Day Delivery","subTitle":"Order will be delivered between 3 - 4 business days straights to your doorstep.","amount":"3"},
+    {"title":"Nominated Delivery","subTitle":"Order will be delivered between 3 - 4 business days straights to your doorstep.","amount":"3"},
+  ];
 }

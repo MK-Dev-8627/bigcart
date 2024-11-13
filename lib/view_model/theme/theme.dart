@@ -60,6 +60,7 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
     highlightColor: const Color(0xffF0536B), // Icons BG Color
     // dialogBackgroundColor: Colors.white,
     toggleableActiveColor: AppColors.primaryColor,
+    iconTheme: IconThemeData(size: 30)
   );
 
   final lightTheme = ThemeData(
@@ -101,6 +102,7 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
       bodyMedium: TextStyle(color: AppColors.textColor),
       bodySmall: TextStyle(color: AppColors.textColor),
     ),
+      iconTheme: IconThemeData(size: 30)
   );
 
   ThemeData? _themeData;

@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 
 import 'configs/routes/routes.dart';
 import 'configs/routes/routes_name.dart';
+import 'view_model/shipping/shipping_view_model.dart';
 import 'view_model/shopping_cart/shopping_cart_view_model.dart';
 import 'view_model/theme/theme.dart';
 
@@ -51,6 +52,8 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
             create: (_) => TransactionsViewModel()),
+        ChangeNotifierProvider(
+            create: (_) => ShippingViewModel()),
       ],
       child: Consumer<ThemeNotifier>(
         builder: (key, theme, child) => MaterialApp(
