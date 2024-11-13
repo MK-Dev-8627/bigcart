@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:big_cart/model/user/user_model.dart';
 import 'package:big_cart/view_model/services/session_manager/session_controller.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../repository/auth_api/auth_repository.dart';
 
@@ -88,5 +91,22 @@ class LoginViewModel with ChangeNotifier {
       setLoginLoading(false);
       throw Exception(e);
     }
+  }
+  // File? imageFile;
+  File _imageFile = File('');
+  File get imageFile => _imageFile;
+
+
+  Future<void> pickFile(ImageSource source) async {
+    ImagePicker imagePicker = ImagePicker();
+    XFile? xFile = await imagePicker.pickImage(
+        imageQuality: 50,
+        maxHeight: 400,
+        maxWidth: 400,
+        preferredCameraDevice: CameraDevice.front,
+        source: source);
+    if (xFile == null) return;
+    _imageFile = File(xFile.path);
+    notifyListeners();
   }
 }

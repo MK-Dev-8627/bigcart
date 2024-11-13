@@ -44,11 +44,7 @@ class CarouselImageWidget extends StatelessWidget {
                         borderRadius: index == entry.key
                             ? BorderRadius.circular(5)
                             : null,
-                        color:
-                        // (Theme.of(context).brightness == Brightness.dark
-                        //         ? Colors.white
-                        //
-                        AppColors.primaryDarkColor
+                        color: AppColors.primaryDarkColor
                             .withOpacity(index == entry.key ? 0.9 : 0.4)),
                   );
                 }).toList(),

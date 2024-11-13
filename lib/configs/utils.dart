@@ -1,59 +1,58 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
+import 'package:big_cart/configs/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
-
-
   // we will use this function to shift focus from one text field to another text field
   // we are using to avoid duplications of code
-  static void fieldFocusChange(BuildContext context , FocusNode current , FocusNode nextFocus){
+  static void fieldFocusChange(
+      BuildContext context, FocusNode current, FocusNode nextFocus) {
     current.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
 
   // generic toast message imported from toast package
   // we will utilise this for showing errors or success messages
-  static toastMessage(String message){
+  static toastMessage(String message) {
     Fluttertoast.showToast(
-        msg: message,
-    backgroundColor: Colors.black,
+      msg: message,
+      backgroundColor: Colors.black,
       textColor: Colors.white,
     );
   }
 
   //imported this from flush bar package
   // we will utilise this for showing errors or success messages
-  static void flushBarErrorMessage(String message, BuildContext context){
-    showFlushbar(context: context,
-        flushbar: Flushbar(
-          forwardAnimationCurve:Curves.decelerate,
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          padding: const EdgeInsets.all(15),
-          message: message,
-          duration: const Duration(seconds: 3),
-          borderRadius: BorderRadius.circular(8),
-          flushbarPosition: FlushbarPosition.TOP,
-          backgroundColor: Colors.red,
-          reverseAnimationCurve: Curves.easeInOut,
-          positionOffset: 20,
-          icon: const Icon(Icons.error , size: 28 , color: Colors.white,),
-        )..show(context),
-
+  static void flushBarErrorMessage(String message, BuildContext context) {
+    showFlushbar(
+      context: context,
+      flushbar: Flushbar(
+        forwardAnimationCurve: Curves.decelerate,
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.all(15),
+        message: message,
+        duration: const Duration(seconds: 3),
+        borderRadius: BorderRadius.circular(8),
+        flushbarPosition: FlushbarPosition.TOP,
+        backgroundColor: Colors.red,
+        reverseAnimationCurve: Curves.easeInOut,
+        positionOffset: 20,
+        icon: const Icon(
+          Icons.error,
+          size: 28,
+          color: Colors.white,
+        ),
+      )..show(context),
     );
-
   }
 
-
   // we will utilise this for showing errors or success messages
-  static snackBar(String message, BuildContext context){
+  static snackBar(String message, BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.red,
-        content: Text(message ))
-    );
+        SnackBar(backgroundColor: Colors.red, content: Text(message)));
   }
 
   static ActionPane editDeleteSlidableAction({
@@ -78,6 +77,7 @@ class Utils {
       ],
     );
   }
+
   static ActionPane deleteSlidableAction({
     Function(BuildContext)? onDeletePressed,
   }) {
@@ -94,4 +94,57 @@ class Utils {
     );
   }
 
+  static showImagePickerDialog(
+    BuildContext context, {
+    final void Function()? galleryTap,
+    final void Function()? cameraTap,
+  }) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Center(
+              child: Text(
+                "Profile Image",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            content: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: galleryTap,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.photo_size_select_actual,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      10.height,
+                      Text("Gallery",style: Theme.of(context).textTheme.bodyMedium,),
+                    ],
+                  ),
+                ),
+                // SizedBox(width: 20),
+                InkWell(
+                  onTap: cameraTap,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.camera_alt,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      10.height,
+                      Text("Camera", style: Theme.of(context).textTheme.bodyMedium,),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
 }

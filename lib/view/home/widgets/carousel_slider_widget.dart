@@ -22,7 +22,7 @@ class CarouselSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: context.mediaQueryHeight * 0.25,
       width: context.mediaQueryWidth,
 
