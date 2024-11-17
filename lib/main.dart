@@ -8,6 +8,7 @@ import 'package:big_cart/repository/home_api/home_http_api_repository.dart';
 import 'package:big_cart/repository/home_api/home_repository.dart';
 import 'package:big_cart/view_model/home/home_view_model.dart';
 import 'package:big_cart/view_model/login/login_view_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -21,10 +22,20 @@ import 'view_model/theme/theme.dart';
 // GetIt is a package used for service locator or to manage dependency injection
 GetIt getIt = GetIt.instance;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   getIt.registerLazySingleton<AuthRepository>(() => AuthHttpApiRepository());
   getIt.registerLazySingleton<HomeRepository>(() => HomeHttpApiRepository());
+  print("FLAVOR==>> ${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+  try {
+    await dotenv.load(
+        fileName:
+            ".env.${const String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+    print("${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+    print("Environment loaded successfully");
+  } catch (e) {
+    print("Error loading environment file: $e");
+  }
   runApp(const MyApp());
 }
 
@@ -48,12 +59,10 @@ class MyApp extends StatelessWidget {
             homeViewModel: context.read<HomeViewModel>(),
           ),
           update: (context, homeViewModel, shoppingCartViewModel) =>
-          shoppingCartViewModel!,
+              shoppingCartViewModel!,
         ),
-        ChangeNotifierProvider(
-            create: (_) => TransactionsViewModel()),
-        ChangeNotifierProvider(
-            create: (_) => ShippingViewModel()),
+        ChangeNotifierProvider(create: (_) => TransactionsViewModel()),
+        ChangeNotifierProvider(create: (_) => ShippingViewModel()),
       ],
       child: Consumer<ThemeNotifier>(
         builder: (key, theme, child) => MaterialApp(

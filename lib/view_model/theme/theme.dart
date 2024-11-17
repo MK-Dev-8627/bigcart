@@ -105,6 +105,48 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
       iconTheme: IconThemeData(size: 30)
   );
 
+  final lightThemeV2 = ThemeData(
+    // brightness: Brightness.light,
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Color(0xFFABE8FA),
+      selectionColor: Color(0xFFC3EDF4),
+      selectionHandleColor: Color(0xFFC3EDF4),
+    ),
+    // change copy/paste menu color
+    // fontFamily: AppFonts.poppins,
+    dialogTheme: const DialogTheme(
+      backgroundColor: Color(0xffffffff),
+    ),
+    primaryColor: Color(0xFFABE8FA), //F2F2F2 Feild, Card
+    scaffoldBackgroundColor: AppColors.whiteColor, //Backgorund Color
+    // shadowColor: Colors.transparent,
+    shadowColor: Color(0xff000000).withOpacity(0.1),
+    canvasColor: AppColors.textColor, // Button Color, Drawar Icons Color
+    cardColor: const Color(0xffffffff),
+    highlightColor: AppColors.primaryColor, // Icons BG Color
+    dialogBackgroundColor: const Color(0xffffffff), //Color(0xffF1F4FF),
+    toggleableActiveColor: AppColors.primaryColor,
+    fontFamily: 'poppins',
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(color: AppColors.blackColor),
+      titleLarge: TextStyle(
+          color: AppColors.blackColor,
+          fontWeight: FontWeight.w600,
+          fontSize: 18),
+      titleMedium: TextStyle(
+          color: AppColors.textColor,
+          fontWeight: FontWeight.w600,
+          fontSize: 15),
+      titleSmall: TextStyle(
+        color: AppColors.textColor,
+      ),
+      bodyLarge: TextStyle(color: AppColors.textColor),
+      bodyMedium: TextStyle(color: AppColors.textColor),
+      bodySmall: TextStyle(color: AppColors.textColor),
+    ),
+      iconTheme: IconThemeData(size: 30)
+  );
+
   ThemeData? _themeData;
 
   ThemeData? getTheme() => _themeData;
@@ -116,11 +158,12 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
   void _initTheme() async {
     var brightness = SchedulerBinding.instance.window.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
-
+    String flavor = const String.fromEnvironment('FLAVOR', defaultValue: 'version1');
+    print("flavor:  $flavor");
     // Initialize theme based on stored value or system preference
     StorageManager.readData('themeMode').then((value) {
       bool themeMode = value ?? isDarkMode;
-      _themeData = themeMode ? darkTheme : lightTheme;
+      _themeData = themeMode ? darkTheme : (flavor == 'version2')?lightThemeV2: lightTheme;
       Constants.themValue = themeMode;
       notifyListeners();
     });
@@ -140,8 +183,10 @@ class ThemeNotifier with ChangeNotifier, WidgetsBindingObserver {
 
   void setTheme({required bool themeValue}) async {
     Constants.themValue = themeValue;
+    String flavor = const String.fromEnvironment('FLAVOR', defaultValue: 'version1');
+    print("setTheme flavor:  $flavor");
     if (themeValue == false) {
-      _themeData = lightTheme;
+      _themeData = (flavor == 'version2')?lightThemeV2: lightTheme;
       StorageManager.saveData('themeMode', themeValue);
       notifyListeners();
     } else {

@@ -63,7 +63,7 @@ class _CurvedBottomNavBarState extends State<CurvedBottomNavBar> {
                 size: 30)
           ],
           color: Theme.of(context).cardColor,
-          buttonBackgroundColor: AppColors.primaryDarkColor,
+          buttonBackgroundColor:  Theme.of(context).primaryColor,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           animationCurve: Curves.easeInOut,
           animationDuration: Duration(milliseconds: 600),

@@ -40,7 +40,7 @@ class AccountView extends StatelessWidget {
                       top: 30,
                       child: Column(
                         children: [
-                          ProfileImageWidget(),
+                          const ProfileImageWidget(),
                           20.height,
                           Text(
                             'MK Dev',

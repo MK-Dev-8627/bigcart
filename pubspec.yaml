@@ -51,6 +51,7 @@ dependencies:
   flutter_slidable: ^3.1.1
   easy_stepper: ^0.8.5+1
   image_picker: ^1.1.2
+  flutter_dotenv: ^5.2.1
 
 
 
@@ -83,6 +84,9 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+
+    - .env.version1
+    - .env.version2
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

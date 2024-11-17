@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:big_cart/data/response/api_response.dart';
 import 'package:big_cart/model/movie_list/movie_list_model.dart';
 import 'package:flutter/material.dart';
+import '../../model/reviews/review_model.dart';
 import '../../repository/home_api/home_repository.dart';
 
 class HomeViewModel with ChangeNotifier {
@@ -175,9 +176,8 @@ class HomeViewModel with ChangeNotifier {
   }
 
   Future<void> removeFavProduct(int index) async {
-
     if (productsList.isNotEmpty) {
-      final int productIndex =  productsList.indexWhere(
+      final int productIndex = productsList.indexWhere(
           (element) => element.name == _favProductsList.elementAt(index).name);
       productsList.elementAt(productIndex).toggleFavorite();
 
@@ -196,4 +196,23 @@ class HomeViewModel with ChangeNotifier {
     print('_cartProductsList:  $_cartProductsList');
     notifyListeners();
   }
+
+  List<Review> _reviewsList = [];
+  List<Review> get reviewsList => _reviewsList;
+
+  setReviewsList(List<Review> value) {
+    _reviewsList = value;
+    print('_reviewsList:  $_reviewsList');
+    notifyListeners();
+  }
+
+  Future<void> fetchReviewsList() async {
+    setLoading(true);
+    _reviewsList = [];
+
+    Future.delayed(const Duration(seconds: 3))
+        .then((value) => setLoading(false));
+    notifyListeners();
+  }
+
 }

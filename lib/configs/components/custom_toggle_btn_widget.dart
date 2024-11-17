@@ -1,6 +1,4 @@
 import 'package:big_cart/configs/assets/image_assets.dart';
-import 'package:big_cart/configs/color/color.dart';
-import 'package:big_cart/configs/extensions.dart';
 import 'package:flutter/material.dart';
 
 class CustomToggleButton extends StatefulWidget {
@@ -48,7 +46,7 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
                 borderRadius: BorderRadius.circular(widget.asATabBar ? 16 : 25),
 
                 color: widget.isSelected[index]
-                    ? AppColors.primaryDarkColor
+                    ? Theme.of(context).primaryColor
                     : Theme.of(context).cardColor,
                 // : Colors.transparent,
                 boxShadow: widget.asATabBar

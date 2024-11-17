@@ -1,6 +1,8 @@
 import 'package:big_cart/configs/components/round_button.dart';
 import 'package:big_cart/configs/extensions.dart';
+import 'package:big_cart/configs/routes/routes_name.dart';
 import 'package:big_cart/view_model/home/home_view_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,90 +31,128 @@ class ProductDetailsView extends StatelessWidget {
     // Early return if no product is found
     if (product == null) {
       return const Scaffold(
-        backgroundColor: AppColors.backgroundColor,
         body: Center(child: Text('No product data available!')),
       );
     }
 
     return Scaffold(
         body: ChangeNotifierProvider(
-          create: (BuildContext context) =>
-              HomeViewModel(homeRepository: getIt())..fetchProductsListApi(),
-          child: Consumer<HomeViewModel>(builder: (context, provider, _) {
-            return SafeArea(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      height: context.mediaQueryHeight * 0.4,
-                      width: context.mediaQueryWidth,
-                      decoration:
-                           BoxDecoration(color: Theme.of(context).cardColor,),
-                      child: Hero(
-                          tag: '${product.name}',
-                          child: Image.asset(
-                            product.image ?? ImageAssets.apple,
-                          )),
-                    ),
-                    Container(
-                        height: context.mediaQueryHeight * 0.6,
-                        width: context.mediaQueryWidth,
-                        padding: const EdgeInsets.all(20),
-                        decoration:  BoxDecoration(
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            borderRadius: const  BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20))),
-                        child: Column(
+      create: (BuildContext context) =>
+          HomeViewModel(homeRepository: getIt())..fetchProductsListApi(),
+      child: Consumer<HomeViewModel>(builder: (context, provider, _) {
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: context.mediaQueryHeight * 0.4,
+                  width: context.mediaQueryWidth,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                  ),
+                  child: Hero(
+                      tag: '${product.name}',
+                      child: Image.asset(
+                        product.image ?? ImageAssets.apple,
+                      )),
+                ),
+                Container(
+                    width: context.mediaQueryWidth,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${product.price}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .copyWith(
-                                              color:
-                                                  AppColors.primaryDarkColor),
-                                    ),
-                                    Text(
-                                      '${product.name}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineLarge,
-                                    ),
-                                    Text(
-                                      '${product.unit}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium,
-                                    ),
-                                  ],
+                                Text(
+                                  '${product.price}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                          color: AppColors.primaryDarkColor),
                                 ),
-                                FavButton(product: product, index: index)
+                                Text(
+                                  '${product.name}',
+                                  style:
+                                      Theme.of(context).textTheme.headlineLarge,
+                                ),
+                                Text(
+                                  '${product.unit}',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                ),
                               ],
                             ),
-                            20.height,
-                            Text('${product.description}',
-                              textAlign: TextAlign.justify,
-                              style: Theme.of(context).textTheme.bodyLarge,),
-                            20.height,
-                            QuantityWidget(index: index, product: product),
-                            20.height,
-                            AddToCartButton(),
-                            20.height,
+                            FavButton(product: product, index: index)
                           ],
-                        ))
-                  ],
-                ),
-              ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamedAndRemoveUntil(context,
+                                RoutesName.reviewsView, (route) => true);
+                          },
+                          child: Row(
+                            children: [
+                              Text(
+                                '${4}',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              10.width,
+                              starsWidget(context, 4),
+                              10.width,
+                              Text(
+                                '(${89} reviews)',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                            ],
+                          ),
+                        ),
+                        // 20.height,
+                        Text(
+                          '${product.description}',
+                          textAlign: TextAlign.justify,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        20.height,
+                        QuantityWidget(index: index, product: product),
+                        20.height,
+                        AddToCartButton(),
+                        20.height,
+                      ],
+                    ))
+              ],
+            ),
+          ),
+        );
+      }),
+    ));
+  }
+
+  Widget starsWidget(BuildContext context, int stars) {
+    return SizedBox(
+      height: 50,
+      width: 100,
+      child: ListView.builder(
+          itemCount: 5,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Icon(
+              index < stars ? Icons.star : Icons.star_border_outlined,
+              color: AppColors.yellowColor,
+              size: 20,
             );
           }),
-        ));
+    );
   }
 }

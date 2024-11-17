@@ -23,6 +23,7 @@ class RoutesName {
   static const String shippingView = 'shipping_view' ;
   static const String myAddressView = 'myAddress_view' ;
   static const String addAddressView = 'add_address_view' ;
+  static const String reviewsView = 'reviews_view' ;
 
 
 }
