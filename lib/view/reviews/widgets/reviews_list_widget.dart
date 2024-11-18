@@ -2,12 +2,15 @@ import 'package:big_cart/configs/assets/image_assets.dart';
 import 'package:big_cart/configs/color/color.dart';
 import 'package:big_cart/configs/components/product_card_widget.dart';
 import 'package:big_cart/configs/constants/constants.dart';
+import 'package:big_cart/configs/extensions.dart';
+import 'package:big_cart/view/reviews/widgets/stars_widget.dart';
 import 'package:big_cart/view_model/transactions/transactions_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../model/reviews/review_model.dart';
 import '../../../model/transactions/transactions_model.dart';
 import '../../../view_model/home/home_view_model.dart';
 
@@ -27,7 +30,7 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final provider =
           Provider.of<HomeViewModel>(context, listen: false);
-      // provider.fetchTransactionsList();
+      provider.fetchReviewsList();
     });
   }
 
@@ -41,8 +44,8 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
           // physics: const NeverScrollableScrollPhysics(),
           itemCount: provider.reviewsList.length,
           itemBuilder: (context, index) {
-            // final transaction = provider.reviewsList[index];
-            // return transactionCardWidget(context, transaction, index);
+            final review = provider.reviewsList[index];
+            return transactionCardWidget(context, review, index);
           },
         ),
       );
@@ -50,10 +53,12 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
   }
 
   Widget transactionCardWidget(
-      BuildContext context, Transaction transaction, int index) {
-    final title = transaction.cardName ?? "";
-    final subTitle = transaction.timeDate ?? "";
-    final amount = transaction.amount ?? "";
+      BuildContext context, Review review, int index) {
+    final image = review.userProfile ?? "";
+    final name = review.name ?? "";
+    final createdAt = review.createdAt ?? "";
+    final rating = review.rating ?? 0.0;
+    final comment = review.comment ?? "";
     return Card(
       child: Container(
         // height: 150,
@@ -61,40 +66,51 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
         decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(10)),
-        child: ListTile(
-          leading: Container(
-            height: 60,
-            width: 60,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                shape: BoxShape.circle),
-            child: Image.asset(
-              title.toLowerCase().contains('paypal')
-                  ? ImageAssets.paypal
-                  : title.toLowerCase().contains('master')
-                      ? ImageAssets.masterCard
-                      : ImageAssets.visa,
-              fit: BoxFit.contain,
-              height: 50,
-              width: 50,
+        child: Column(
+          children: [
+            ListTile(
+              leading: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage( image),fit: BoxFit.contain,
+                    )
+                ),
+              ),
+              title: Text(
+                name,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              subtitle: Text(
+                createdAt,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
             ),
-          ),
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          subtitle: Text(
-            subTitle,
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          trailing: Text(
-            '${Constants.currency} $amount',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: AppColors.primaryDarkColor),
-          ),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '${rating}',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      10.width,
+                      StarsWidget(stars: rating.toInt()),
+                    ],
+                  ),
+                  Text(
+                    comment,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

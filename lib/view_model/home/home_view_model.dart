@@ -209,7 +209,7 @@ class HomeViewModel with ChangeNotifier {
   Future<void> fetchReviewsList() async {
     setLoading(true);
     _reviewsList = [];
-
+_reviewsList = Constants.reviewsList;
     Future.delayed(const Duration(seconds: 3))
         .then((value) => setLoading(false));
     notifyListeners();

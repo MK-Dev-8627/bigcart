@@ -24,6 +24,7 @@ class RoutesName {
   static const String myAddressView = 'myAddress_view' ;
   static const String addAddressView = 'add_address_view' ;
   static const String reviewsView = 'reviews_view' ;
+  static const String writeReviewsView = 'write_reviews_view' ;
 
 
 }

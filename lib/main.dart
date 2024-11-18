@@ -26,16 +26,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   getIt.registerLazySingleton<AuthRepository>(() => AuthHttpApiRepository());
   getIt.registerLazySingleton<HomeRepository>(() => HomeHttpApiRepository());
-  print("FLAVOR==>> ${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
-  try {
-    await dotenv.load(
-        fileName:
-            ".env.${const String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
-    print("${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
-    print("Environment loaded successfully");
-  } catch (e) {
-    print("Error loading environment file: $e");
-  }
+  // print("FLAVOR==>> ${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+  // try {
+  //   await dotenv.load(
+  //       fileName:
+  //           ".env.${const String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+  //   print("${String.fromEnvironment('FLAVOR', defaultValue: 'version1')}");
+  //   print("Environment loaded successfully");
+  // } catch (e) {
+  //   print("Error loading environment file: $e");
+  // }
   runApp(const MyApp());
 }
 

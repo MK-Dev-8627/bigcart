@@ -3,6 +3,7 @@ import 'package:big_cart/model/transactions/transactions_model.dart';
 
 import '../../model/address/address_model.dart';
 import '../../model/product/product_model.dart';
+import '../../model/reviews/review_model.dart';
 
 class Constants {
   static bool? themValue = false;
@@ -197,6 +198,25 @@ class Constants {
       country: "Pakistan",
       show: false,
       makeDefault: false,
+    ),
+  ];
+
+  static List<Review> reviewsList = [
+    Review(
+      id: '1',
+      name: 'MK Dev',
+      userProfile: ImageAssets.mkDev,
+      createdAt: '11 min ago',
+      rating: 4.0,
+      comment: '''Lorem ipsum dolor sit amet, consetetur sadi sspscing elitr, sed diam nonumy.'''
+    ),
+    Review(
+      id: '2',
+      name: 'MK Dev',
+      userProfile: ImageAssets.mkDev,
+      createdAt: '11 min ago',
+      rating: 5.0,
+      comment: '''Lorem ipsum dolor sit amet, consetetur sadi sspscing elitr, sed diam nonumy.'''
     ),
   ];
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../configs/assets/image_assets.dart';
 import '../../configs/components/custom_appbar.dart';
+import '../../configs/routes/routes_name.dart';
 
 class ReviewsView extends StatelessWidget {
   const ReviewsView({super.key});
@@ -16,7 +17,7 @@ class ReviewsView extends StatelessWidget {
         actionWidgets: [
           IconButton(
               onPressed: () {
-                // Navigator.pushNamedAndRemoveUntil(context, RoutesName.addAddressView, (route) => true);
+                Navigator.pushNamedAndRemoveUntil(context, RoutesName.writeReviewsView, (route) => true);
               },
               icon: const ImageIcon(AssetImage(ImageAssets.add ?? ""))),
         ],
