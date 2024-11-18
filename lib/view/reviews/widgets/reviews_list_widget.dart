@@ -45,14 +45,14 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
           itemCount: provider.reviewsList.length,
           itemBuilder: (context, index) {
             final review = provider.reviewsList[index];
-            return transactionCardWidget(context, review, index);
+            return reviewsCardWidget(context, review, index);
           },
         ),
       );
     });
   }
 
-  Widget transactionCardWidget(
+  Widget reviewsCardWidget(
       BuildContext context, Review review, int index) {
     final image = review.userProfile ?? "";
     final name = review.name ?? "";
@@ -92,11 +92,12 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Text(
-                        '${rating}',
+                        '$rating',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       10.width,

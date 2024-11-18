@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:big_cart/configs/assets/image_assets.dart';
 import 'package:big_cart/configs/constants/constants.dart';
 import 'package:big_cart/model/product/product_model.dart';
 import 'package:flutter/foundation.dart';
@@ -215,4 +216,34 @@ _reviewsList = Constants.reviewsList;
     notifyListeners();
   }
 
+  int _currentStars = 3;
+  int get currentStars => _currentStars;
+
+  setCurrentStars(int value) {
+    _currentStars = value;
+    notifyListeners();
+  }
+
+//creating getter method to store value of input review comment
+  TextEditingController commentController = TextEditingController();
+  String _comment = '';
+  String get comment => _comment;
+
+  setComment(String comment) {
+    _comment = comment;
+  }
+
+  Future<void> addReview() async{
+    final Review review = Review(
+      id: '',
+      name: 'MK Dev',
+      userProfile: ImageAssets.mkDev,
+      rating: currentStars.toDouble(),
+      comment: commentController.text.trim(),
+      createdAt: '10 min ago'
+    );
+
+    _reviewsList.add(review);
+    notifyListeners();
+  }
 }
