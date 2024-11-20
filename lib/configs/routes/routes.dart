@@ -15,6 +15,7 @@ import '../../view/address/add_new_address.dart';
 import '../../view/address/my_address.dart';
 import '../../view/categories_products/categories_products.dart';
 import '../../view/feature_products/features_products.dart';
+import '../../view/notification/notification_view.dart';
 import '../../view/reviews/reviews_view.dart';
 import '../../view/reviews/write_reviews_view.dart';
 import '../../view/shipping/shipping_view.dart';
@@ -103,6 +104,10 @@ class Routes {
       case RoutesName.writeReviewsView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const WriteReviewsView(),
+            settings: settings);
+        case RoutesName.notificationView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const NotificationView(),
             settings: settings);
 
       default:

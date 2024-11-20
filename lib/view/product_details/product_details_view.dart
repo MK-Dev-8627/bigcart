@@ -110,7 +110,7 @@ class ProductDetailsView extends StatelessWidget {
                               starsWidget(context, 4),
                               10.width,
                               Text(
-                                '(${89} reviews)',
+                                '(${2} reviews)',
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ],

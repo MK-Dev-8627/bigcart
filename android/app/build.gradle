@@ -59,19 +59,19 @@ android {
         }
     }
 
-    flavorDimensions "version"
-    productFlavors {
-        version1 {
-            dimension "version"
-            applicationIdSuffix ".version1"
-            versionNameSuffix "-version1"
-        }
-        version2 {
-            dimension "version"
-            applicationIdSuffix ".version2"
-            versionNameSuffix "-version2"
-        }
-    }
+//    flavorDimensions "version"
+//    productFlavors {
+//        version1 {
+//            dimension "version"
+//            applicationIdSuffix ".version1"
+//            versionNameSuffix "-version1"
+//        }
+//        version2 {
+//            dimension "version"
+//            applicationIdSuffix ".version2"
+//            versionNameSuffix "-version2"
+//        }
+//    }
 }
 
 flutter {

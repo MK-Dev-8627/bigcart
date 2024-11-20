@@ -244,6 +244,7 @@ _reviewsList = Constants.reviewsList;
     );
 
     _reviewsList.add(review);
+    commentController.clear();
     notifyListeners();
   }
 }

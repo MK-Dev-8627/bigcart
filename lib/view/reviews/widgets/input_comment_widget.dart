@@ -22,7 +22,7 @@ class InputCommentWidget extends StatelessWidget {
         focusNode: null,
         keyboardType: TextInputType.text,
         minLines: 5,
-        // fillColor: Theme.of(context).cardColor,
+        fillColor: Theme.of(context).cardColor,
         onFieldSubmitted: (value) {
         },
         onChanged: (value) {

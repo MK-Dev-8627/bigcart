@@ -129,6 +129,7 @@ class AccountView extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                   ListTile(
+                    onTap: ()=> Navigator.pushNamedAndRemoveUntil(context, RoutesName.notificationView, (route) => true),
                     leading: const ImageIcon(
                       AssetImage(ImageAssets.notification),
                       color: AppColors.primaryDarkColor,

@@ -41,7 +41,6 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
         enabled: provider.loading,
         child: ListView.builder(
           shrinkWrap: true,
-          // physics: const NeverScrollableScrollPhysics(),
           itemCount: provider.reviewsList.length,
           itemBuilder: (context, index) {
             final review = provider.reviewsList[index];
@@ -61,7 +60,6 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
     final comment = review.comment ?? "";
     return Card(
       child: Container(
-        // height: 150,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
@@ -88,7 +86,7 @@ class _ReviewsListWidgetState extends State<ReviewsListWidget> {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
-            Divider(),
+            const Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(

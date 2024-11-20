@@ -21,6 +21,7 @@ class InputAddressWidget extends StatelessWidget {
         controller: provider.addressController,
         focusNode: focusNode,
         keyboardType: TextInputType.text,
+        fillColor: Theme.of(context).cardColor,
         onFieldSubmitted: (value) {
           Utils.fieldFocusChange(context, focusNode, zipCodeFocusNode);
         },

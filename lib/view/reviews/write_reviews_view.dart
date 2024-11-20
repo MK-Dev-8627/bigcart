@@ -23,26 +23,22 @@ class WriteReviewsView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Text(
-                  'What do you think?',
+                  SizedBox(height: context.mediaQueryHeight * 0.1,),
+                  Text('What do you think ?',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineLarge,),
+                  Text('please give your rating by clicking on the stars below',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                  10.height,
-                  Text(
-                  'please give your rating by clicking on the stars below',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                  10.height,
+                  style: Theme.of(context).textTheme.titleMedium,),
+                  20.height,
                   RatingWidget(),
                   10.height,
                   InputCommentWidget(),
                   20.height,
                   AddReviewButtonWidget(),
-              ],))),
+                  20.height,
+                ],))),
     );
   }
 }
